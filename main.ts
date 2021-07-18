@@ -317,7 +317,7 @@ placeholder="Try searching for an image!"
                                 .moment()
                                 .format("YYYY-MM-DD HHmmss");
                             // Image name from unsplash alt description
-                            const imgName = `${imgDesc}`;
+                            const imgName = `${imgDesc}`.toUpperCase;
                             // Folder path to save img
                             const folderPath =
                                 settings.folderPath === ""
@@ -409,7 +409,7 @@ class ObsplashSettingsTab extends PluginSettingTab {
         new Setting(containerEl)
             .setName("Folder path")
             .setDesc(
-                'This is the path to by which to save your images. The default is the root of your vault \'/\'. If you do wish it, leave out the first slash in front. e.g. To save the image in "Images", type in "Images" (no quotes)'
+                'This is the path to by which to save your images. The default is the root of your vault \'/\'. If you do wish it, leave out the first slash in front. e.g. To save the image in "Images," type in "Images" (no quotes). To save an image to "VAULT NAME/Attachments/Images," type in "Attachments/Images."'
             )
             .addText((text) =>
                 text
@@ -499,19 +499,6 @@ export default class Obsplash extends Plugin {
                 this.app.workspace.revealLeaf(
                     this.app.workspace.getLeavesOfType(Obsplash_View_).first()
                 );
-            },
-        });
-
-        this.addCommand({
-            id: "open-obsplash",
-            name: "Open Osplash",
-            checkCallback: (checking) => {
-                if (!this.view) {
-                    if (!checking) {
-                        this.addObsplashView();
-                    }
-                    return true;
-                }
             },
         });
 
