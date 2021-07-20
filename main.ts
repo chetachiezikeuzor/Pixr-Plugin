@@ -47,6 +47,7 @@ const DEFAULT_SETTINGS: ObsplashSettings = {
  */
 
 class ObsplashView extends ItemView {
+    app: App;
     apiKey = "";
     plugin: Obsplash;
     settings: ObsplashSettings;
@@ -63,7 +64,6 @@ class ObsplashView extends ItemView {
         this.app = app;
         this.settings = settings;
         this.apiKey = apiKey;
-        //this.apiKey = apiKey;
     }
 
     getViewType(): string {
@@ -188,11 +188,11 @@ placeholder="Try searching for an image!"
             try {
                 const results = await searchUnsplash(searchQuery);
                 pagination(results.total_pages);
-                console.log(results);
+                //console.log(results);
                 displayResults(results);
             } catch (err) {
                 console.log(err);
-                alert("Failed to search Unsplash");
+                new Notice("Failed to search Unsplash");
             }
             spinner.classList.add("hidden");
         }
@@ -205,7 +205,7 @@ placeholder="Try searching for an image!"
                 document.querySelector(".js-search-input")
             )).value;
             searchQuery = inputValue.trim();
-            console.log(searchQuery);
+            //console.log(searchQuery);
             fetchResults(searchQuery);
         }
 
@@ -299,6 +299,7 @@ placeholder="Try searching for an image!"
                 function getExtension(urlParam: string) {
                     return urlParam.split(/[#?]/)[0].split(".").pop().trim();
                 }
+                //const extension = this.response.urls.raw.match(/\.[^\.]*$/);
 
                 actionButton.addEventListener("click", () => {
                     (async function () {
@@ -309,7 +310,7 @@ placeholder="Try searching for an image!"
                             reader.readAsDataURL(blob);
                         });
                         const buf = await blob.arrayBuffer();
-                        let mem = blob.type;
+                        let fileExtension = blob.type.split("/").pop();
                         function saveThisAsImage() {
                             const arrBuff = buf;
                             // Add the current datetime to the image name
@@ -317,16 +318,18 @@ placeholder="Try searching for an image!"
                                 .moment()
                                 .format("YYYY-MM-DD HHmmss");
                             // Image name from unsplash alt description
-                            const imgName = `${imgDesc}`.toUpperCase;
+                            const imgName = `${imgDesc}`;
                             // Folder path to save img
                             const folderPath =
                                 settings.folderPath === ""
                                     ? "/"
                                     : settings.folderPath;
+                            var copyText = `![[${imgName} ${now}.${fileExtension}]]`;
+
                             if (validFolderPathQ(folderPath)) {
                                 //@ts-ignore
                                 app.vault.createBinary(
-                                    `${folderPath}/${imgName} ${now}` + ".png",
+                                    `${folderPath}/${imgName} ${now}.${fileExtension}`,
                                     arrBuff
                                 );
                                 new Notice("Image saved  🥳");
@@ -335,14 +338,25 @@ placeholder="Try searching for an image!"
                                     "Chosen folder path does not exist in your vault"
                                 );
                             }
+
+                            navigator.clipboard.writeText(copyText).then(
+                                function () {
+                                    new Notice("Link to image in clipboard");
+                                },
+                                function (err) {
+                                    new Notice("Couldn't get image");
+                                }
+                            );
                         }
-                        console.log(blob);
-                        console.log(buf);
+                        console.log(fileExtension);
+                        //console.log(blob);
+                        //console.log(buf);
                         saveThisAsImage();
                     })();
                 });
 
                 zoomButton.addEventListener("mousedown", () => {
+                    //console.log(extension);
                     var imageToZoom = resultImage;
                     imageToZoom.setAttribute(
                         "style",
@@ -395,7 +409,7 @@ class ObsplashSettingsTab extends PluginSettingTab {
 
         new Setting(containerEl)
             .setName("Unsplash APIKey")
-            .setDesc("Use this link to get you custom APIKey")
+            .setDesc("Use this link to get your custom APIKey")
             .addText((text) =>
                 text
                     .setPlaceholder("APIKey")
@@ -544,6 +558,7 @@ export default class Obsplash extends Plugin {
         var currentView = document.querySelector(".obsplash-view-container");
         currentView.remove;
     }
+
     initLeaf(workspace: Workspace): void {
         if (workspace.getLeavesOfType("obsplash").length == 0) {
             workspace.getRightLeaf(false).setViewState({
