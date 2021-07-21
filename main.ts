@@ -24,15 +24,20 @@ import { __awaiter } from "tslib";
 import * as path from "path";
 import { pathToFileURL } from "url";
 
+var obsidian = require("obsidian");
+
 const Obsplash_View_ = "obsplash-view-container";
 
-var obsidian = require("obsidian");
+const EMBED_TYPES = ["Markdown", "HTML"] as const;
+
+type Embed = typeof EMBED_TYPES[number];
 
 interface ObsplashSettings {
     mySetting: string;
     apiKey: string;
     imgName: string;
     folderPath: string;
+    embedType: Embed;
 }
 
 const DEFAULT_SETTINGS: ObsplashSettings = {
@@ -40,11 +45,8 @@ const DEFAULT_SETTINGS: ObsplashSettings = {
     apiKey: "",
     imgName: "obs",
     folderPath: "/",
+    embedType: "Markdown",
 };
-
-/**
- * @public
- */
 
 class ObsplashView extends ItemView {
     app: App;
@@ -117,7 +119,7 @@ class="input"
 value=""
 placeholder="Try searching for an image!"
 />
-<button type="submit" class="btn">Search</button>`;
+<button type="submit" class="btn mod-cta">Search</button>`;
 
         const resultContainer = document.createElement("div");
         const paginationDiv = document.createElement("div");
@@ -296,9 +298,6 @@ placeholder="Try searching for an image!"
                 actionButtons.appendChild(zoomButton);
                 actionButtons.appendChild(actionButton);
 
-                function getExtension(urlParam: string) {
-                    return urlParam.split(/[#?]/)[0].split(".").pop().trim();
-                }
                 //const extension = this.response.urls.raw.match(/\.[^\.]*$/);
 
                 actionButton.addEventListener("click", () => {
@@ -434,6 +433,23 @@ class ObsplashSettingsTab extends PluginSettingTab {
                         await this.plugin.saveSettings();
                     })
             );
+        new Setting(containerEl)
+            .setName("Choose Drag 'n Drop Embed Type")
+            .setDesc(
+                "This will allow you to set a default for how you'd like to embed your drag 'n drop images."
+            )
+            .addDropdown((dropdown) => {
+                let types: Record<string, string> = {};
+                EMBED_TYPES.map((type) => (types[type] = type));
+                dropdown.addOptions(types);
+                dropdown
+                    .setValue(this.plugin.settings.embedType)
+                    .onChange(async (value) => {
+                        this.plugin.settings.embedType = value as Embed;
+                        this.plugin.settings.embedType;
+                        await this.plugin.saveSettings();
+                    });
+            });
         const div = containerEl.createEl("div", {
             cls: "cDonationSection",
         });
@@ -462,7 +478,6 @@ class ObsplashSettingsTab extends PluginSettingTab {
 const createDonateButton = (link: string): HTMLElement => {
     const a = document.createElement("a");
     a.setAttribute("href", link);
-    a.addClass("advanced-tables-donate-button");
     a.innerHTML = `<img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chetachi&button_colour=e3e7ef&font_colour=262626&font_family=Inter&outline_colour=262626&coffee_colour=ff0000">`;
     return a;
 };
@@ -470,6 +485,7 @@ const createDonateButton = (link: string): HTMLElement => {
 export default class Obsplash extends Plugin {
     settings: ObsplashSettings;
     apiKey: string;
+    embedType: string;
 
     get view() {
         let leaf = (
@@ -483,8 +499,9 @@ export default class Obsplash extends Plugin {
         addIcons();
 
         await this.loadSettings();
-
         console.log("Obsplash v" + this.manifest.version + " loaded");
+
+        this.addSettingTab(new ObsplashSettingsTab(this.app, this));
 
         this.registerView(
             Obsplash_View_,
@@ -542,16 +559,23 @@ export default class Obsplash extends Plugin {
                             { left: event.clientX, top: event.clientY },
                             "window"
                         );
-                        instance.replaceRange(
-                            `![Image](${match[1]})`,
-                            coords,
-                            coords
-                        );
+                        if (DEFAULT_SETTINGS.embedType === "HTML") {
+                            instance.replaceRange(
+                                `<img src="${match[1]}">`,
+                                coords,
+                                coords
+                            );
+                        } else if (DEFAULT_SETTINGS.embedType === "Markdown") {
+                            instance.replaceRange(
+                                `![Image](${match[1]})`,
+                                coords,
+                                coords
+                            );
+                        }
                     }
                 });
             });
         });
-        this.addSettingTab(new ObsplashSettingsTab(this.app, this));
     }
 
     destroy(): void {
@@ -572,6 +596,7 @@ export default class Obsplash extends Plugin {
             .forEach((leaf) => leaf.detach());
         console.log("Obsplash unloaded");
     }
+
     addObsplashView() {
         if (this.app.workspace.getLeavesOfType(Obsplash_View_).length) {
             return;
