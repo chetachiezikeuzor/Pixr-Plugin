@@ -11,12 +11,11 @@
     --blue-tint-dark: hsl(216, 100%, 35%);
 }
 
-.obsplash-view-container {
+.multipix-view-container {
     padding: 5px;
     margin: 0 auto;
     border-radius: 6px;
     height: calc(100% - 50px);
-    /*border: 1px solid var(--background-modifier-border);*/
 }
 
 .result-container {
@@ -53,17 +52,6 @@ form button {
     display: none;
 }
 
-label {
-    font-size: 1em;
-    margin-bottom: 5em;
-}
-
-label input {
-    outline: none;
-    padding-top: 10px;
-    height: 2.25em;
-}
-
 .result-stats {
     color: var(--text-faint);
     padding-bottom: 12px;
@@ -84,23 +72,30 @@ label input {
 .result-item {
     height: 20vh;
     flex-grow: 1;
-
     overflow: hidden;
     border-radius: 3px;
     -webkit-box-flex: 1;
     margin: 0 8px 8px 0;
     text-decoration: none;
+    position: relative;
 }
 
-/*
-  .result-item:last-child {
-    -webkit-box-flex: 10;
-    flex-grow: 10;
-  }*/
-
-.result-item a,
 .result-item a:hover {
-    text-decoration: none;
+    text-decoration: underline;
+}
+
+.externalLinkIcon > svg {
+    fill: var(--background-modifier-accent);
+}
+
+.externalLinkIcon {
+    transition: 15ms ease-in-out;
+}
+
+.externalLinkIcon:hover {
+    cursor: pointer;
+    margin-top: -2px;
+    margin-right: -1px;
 }
 
 .result-image {
@@ -141,8 +136,9 @@ label input {
 .result-options {
     display: grid;
     cursor: pointer;
+    text-align: left;
+    padding: 0.25em;
     justify-content: space-around;
-    padding: 0.25em 0.5em;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     grid-template-columns: 0.65fr 0.35fr;
@@ -157,14 +153,11 @@ label input {
     border-right: 1px solid var(--background-modifier-border);
 }
 
-svg.unsplashicon svg {
-    stroke-width: 2;
-}
-
 .result-options img {
-    width: 25px;
-    height: 25px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
+    border: 2px solid var(--background-modifier-border);
 }
 
 .user-info {
@@ -181,7 +174,6 @@ svg.unsplashicon svg {
     text-overflow: ellipsis;
     font-weight: 500;
     color: var(--text-normal);
-    text-transform: capitalize;
     font-size: 0.875em;
     margin-left: 8px;
     overflow: hidden;
@@ -222,28 +214,18 @@ svg.unsplashicon svg {
     font-size: 1em;
     letter-spacing: 0.7px;
 }
-
-.photographer-name:hover {
-    text-decoration: underline;
-}
 /*
-.prev-btn:hover,
-.next-btn:hover {
-}*/
-
-a:hover {
-    text-decoration: underline;
-}
-
 .spinner {
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     position: relative;
     margin: 100px auto;
-}
+}*/
+
 .pagination {
     padding-top: 10px;
 }
+
 .cDonationSection {
     width: 60%;
     margin: 0 auto;
@@ -251,37 +233,44 @@ a:hover {
     color: var(--text-normal);
 }
 /*
-  .double-bounce1, .double-bounce2 {
+.double-bounce1,
+.double-bounce2 {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: #363636;
-    opacity: 0.6;
+    background-color: var(--interactive-accent);
+    opacity: 0.8;
     position: absolute;
     top: 0;
     left: 0;
-    
-    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-    animation: sk-bounce 2.0s infinite ease-in-out;
-  }
-  
-  .double-bounce2 {
-    -webkit-animation-delay: -1.0s;
-    animation-delay: -1.0s;
-  }*.
-  
-  /*
-  @-webkit-keyframes sk-bounce {
-    0%, 100% { -webkit-transform: scale(0.0) }
-    50% { -webkit-transform: scale(1.0) }
-  }
-  
-  @keyframes sk-bounce {
-    0%, 100% { 
-      transform: scale(0.0);
-      -webkit-transform: scale(0.0);
-    } 50% { 
-      transform: scale(1.0);
-      -webkit-transform: scale(1.0);
+
+    -webkit-animation: sk-bounce 2s infinite ease-in-out;
+    animation: sk-bounce 2s infinite ease-in-out;
+}
+
+.double-bounce2 {
+    -webkit-animation-delay: -4s;
+    animation-delay: -4s;
+}
+
+@-webkit-keyframes sk-bounce {
+    0%,
+    100% {
+        -webkit-transform: scale(0);
     }
-  }*/
+    50% {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes sk-bounce {
+    0%,
+    100% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}*/
