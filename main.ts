@@ -381,7 +381,7 @@ placeholder="Try searching for an image!"
                     var imageToZoom = resultImage;
                     imageToZoom.setAttribute(
                         "style",
-                        "display: block; z-index: 100; position: fixed; max-height: calc(100% + 25px); height: calc(100% + 1px); width: 100%; object-fit: contain; margin: -15px auto 0; text-align: center; top: 50%; transform: translateY(-50%); padding: 0; left: 0; right: 0; bottom: 0; mix-blend-mode: normal; background-color: var(--background-secondary);"
+                        "display: block; z-index: 100; position: fixed; max-height: calc(100% + 25px); height: calc(100% + 1px); width: 100%; object-fit: contain; margin: -1.5px auto 0; text-align: center; top: 50%; transform: translateY(-50%); padding: 0; left: 0; right: 0; bottom: 0; mix-blend-mode: normal; background-color: var(--background-secondary);"
                     );
                 });
                 resultImage.addEventListener("mousedown", () => {
