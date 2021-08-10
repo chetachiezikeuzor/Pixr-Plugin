@@ -12,3 +12,9 @@ main.js
 
 # obsidian
 data.json
+
+#prettier
+.prettierrc.json
+
+#history
+.history
