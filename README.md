@@ -1,26 +1,28 @@
-# MultiPix
+WIP
 
-![](https://raw.githubusercontent.com/chetachiezikeuzor/MultiPix-Plugin/master/assets/MultiPix%20Header%20Demo.png)
+# Pixr
 
-MultiPix is a plugin that harnassing the Unsplash's image database to add a custom image source and embedding tool 🎑. This plugin makes finding and emedding images much easier with just a few clicks.
+![](https://raw.githubusercontent.com/chetachiezikeuzor/Pixr-Plugin/master/assets/Pixr%20Header%20Demo.png)
+
+Pixr is a plugin that harnassing the Unsplash's image database to add a custom image source and embedding tool 🎑. This plugin makes finding and emedding images much easier with just a few clicks.
 
 ## Demo
 
-![](https://raw.githubusercontent.com/chetachiezikeuzor/MultiPix-Plugin/master/assets/MultiPix%20Demo%20Use.gif)
+![](https://raw.githubusercontent.com/chetachiezikeuzor/Pixr-Plugin/master/assets/Pixr%20Demo%20Use.gif)
 
 ## Ease of Use
 
-This plugin was created for note-takers that have a heavy image use with their workflow. MultiPix is pretty simple to use as well! All you have to do is open the MultiPix view using the Command Palette, then search for an image.
+This plugin was created for note-takers that have a heavy image use with their workflow. Pixr is pretty simple to use as well! All you have to do is open the Pixr view using the Command Palette, then search for an image.
 
 ## How it Works
 
-Unsplash's image database has just reached over 3million photos, which gives you a giant pool of images to choose from, right inside of your note-taking tool. MultiPix appends links to the photographer of the images, and the image itself, so you can always go back to the source! When you search for an image using MultiPix, you'll see two icon buttons. One is the wand icon, the other is the download icon. The wand button allows you to see a large preview of the image, so that you can get a good look before embedding into your note. When it comes to embedding images into your notes, there are two ways you can go about it. The first is by using the download button. This button runs a function that condenses the image to blob type, and then write the image as a file directly into your vault. You can also declare a folder to be used for downloading images. The second way is to drag and drop the image into your note. When you drag and drop the image, a base64 encode string is returned. Both methods grant you control over your new images, so that they are future proof!
+Unsplash's image database has just reached over 3million photos, which gives you a giant pool of images to choose from, right inside of your note-taking tool. Pixr appends links to the photographer of the images, and the image itself, so you can always go back to the source! When you search for an image using Pixr, you'll see two icon buttons. One is the wand icon, the other is the download icon. The wand button allows you to see a large preview of the image, so that you can get a good look before embedding into your note. When it comes to embedding images into your notes, there are two ways you can go about it. The first is by using the download button. This button runs a function that condenses the image to blob type, and then write the image as a file directly into your vault. You can also declare a folder to be used for downloading images. The second way is to drag and drop the image into your note. When you drag and drop the image, a base64 encode string is returned. Both methods grant you control over your new images, so that they are future proof!
 
-![](https://raw.githubusercontent.com/chetachiezikeuzor/MultiPix-Plugin/master/assets/MP1.png)
+![](https://raw.githubusercontent.com/chetachiezikeuzor/Pixr-Plugin/master/assets/MP1.png)
 
 <br>
 
-![](https://raw.githubusercontent.com/chetachiezikeuzor/MultiPix-Plugin/master/assets/MP2.png)
+![](https://raw.githubusercontent.com/chetachiezikeuzor/Pixr-Plugin/master/assets/MP2.png)
 
 ## Installation
 
