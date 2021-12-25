@@ -1811,11 +1811,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-native-dotenv@^0.2.0":
-  "integrity" "sha512-ZxX+dU/yoQc0jTk+/NWttkiuXceJyN5FpOSqDl0WynN5GDzxwH7OMruQ47qcY8llo2RD3irjvzJ9BwC8gDiq0A=="
-  "resolved" "https://registry.npmjs.org/@types/react-native-dotenv/-/react-native-dotenv-0.2.0.tgz"
-  "version" "0.2.0"
-
 "@types/react-tabs@^2.3.4":
   "integrity" "sha512-HQzhKW+RF/7h14APw/2cu4Nnt+GmsTvfBKbFdn/NbYpb8Q+iB65wIkPHz4VRKDxWtOpNFpOUtzt5r0LRmQMfOA=="
   "resolved" "https://registry.npmjs.org/@types/react-tabs/-/react-tabs-2.3.4.tgz"
