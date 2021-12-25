@@ -1,18 +1,22 @@
-import React from "react";
-import { usePlugin } from "./hooks";
-
+import usePlugin from "./hooks";
 import ResultItem from "./resultItem";
-const ResultList = ({ data }: any) => {
+import React, { useEffect, useRef } from "react";
+
+const ResultList = ({ data, update }: any) => {
+    const updater = () => {
+        if (update)
+            (ref as any).current.scrollTo({ behavior: "smooth", top: "0px" });
+    };
+    useEffect(() => updater);
+    const ref = useRef();
+    const plugin = usePlugin();
     let items = data.map((photo: any) => (
-        <ResultItem key={photo.id} photo={photo} plugin={usePlugin()} />
+        <ResultItem key={photo.id} photo={photo} plugin={plugin} />
     ));
     return (
-        <div
-            className="search-results js-search-results"
-            style={{ maxHeight: "72vh", overflowY: "scroll" }}
-        >
+        <ul ref={ref} className="search-results">
             {items}
-        </div>
+        </ul>
     );
 };
 

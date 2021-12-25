@@ -1,27 +1,15 @@
 :root {
-    --transition-duration-100: 100ms;
-    --transition-delay: 80ms;
-    --body-background: rgb(225, 225, 225);
-    /*colors*/
-    --white: #fff;
-    --black: #000;
-    --gray-light: pink;
-    --gray-dark: #494949;
-    --blue-tint-light: hsl(216, 100%, 50%);
-    --blue-tint-dark: hsl(216, 100%, 35%);
+    --color-size-pixr: 204, 169, 255;
+    --color-likes-pixr: 255, 183, 234;
+    --color-views-pixr: 147, 192, 255;
+    --color-downloads-pixr: 156, 240, 156;
 }
 
-.multipix-view-container {
+.pixr-view-container {
     padding: 5px;
     margin: 0 auto;
     border-radius: 6px;
     height: calc(100% - 50px);
-}
-
-.result-container {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    max-height: 76%;
 }
 
 .search-input {
@@ -34,11 +22,7 @@
     outline: none;
 }
 
-form button {
-    display: none;
-}
-
-.hidden {
+.pagination-hidden {
     display: none;
 }
 
@@ -50,20 +34,21 @@ form button {
 }
 
 .search-results {
+    padding: 0;
     display: -webkit-box;
     display: flex;
     flex-wrap: wrap;
-    padding: 0;
-    margin: 0 auto;
     margin: 0 -8px -8px 0;
     list-style-type: none;
+    overflow-y: scroll;
+    max-height: 82%;
 }
 
 .result-item {
     height: 20vh;
     flex-grow: 1;
     overflow: hidden;
-    border-radius: 3px;
+    border-radius: 4px;
     -webkit-box-flex: 1;
     margin: 0 8px 8px 0;
     text-decoration: none;
@@ -94,12 +79,10 @@ form button {
     min-width: 100%;
     overflow: hidden;
     cursor: pointer;
-
     object-fit: cover;
     -o-object-fit: cover;
     vertical-align: bottom;
     transition: 300ms ease-in-out;
-
     -webkit-transition: all 0.25s ease-in-out;
     -moz-transition: all 0.25s ease-in-out;
     -o-transition: all 0.25s ease-in-out;
@@ -116,11 +99,11 @@ form button {
 }
 
 .result-item:hover .result-options {
-    transform: translateY(-37px);
-    -webkit-transform: translateY(-37px);
-    -moz-transform: translateY(-37px);
-    -ms-transform: translateY(-37px);
-    -o-transform: translateY(-37px);
+    transform: translateY(-41px);
+    -webkit-transform: translateY(-41px);
+    -moz-transform: translateY(-41px);
+    -ms-transform: translateY(-41px);
+    -o-transform: translateY(-41px);
 }
 
 .result-options {
@@ -128,10 +111,10 @@ form button {
     cursor: pointer;
     text-align: left;
     padding: 0.25em;
-    justify-content: space-around;
+    justify-content: space-between;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    grid-template-columns: 0.65fr 0.35fr;
+    grid-template-columns: 0.5fr 0.65fr;
     -webkit-transition: all 0.25s ease-in-out;
     -moz-transition: all 0.25s ease-in-out;
     -o-transition: all 0.25s ease-in-out;
@@ -152,6 +135,7 @@ form button {
 
 .user-info {
     width: 100%;
+    line-height: 1.8em;
     font-size: 15px;
     white-space: nowrap;
     overflow: hidden;
@@ -159,12 +143,9 @@ form button {
     display: flex;
 }
 
-.user-info text {
+.user-info span {
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-weight: 500;
-    color: var(--text-normal);
-    font-size: 0.875em;
     margin-left: 8px;
     overflow: hidden;
     width: calc(100% - 30px);
@@ -202,6 +183,7 @@ form button {
 
 .photographer-name {
     font-size: 1em;
+    margin-left: 6px;
     letter-spacing: 0.7px;
 }
 
@@ -209,31 +191,15 @@ form button {
     padding-top: 10px;
 }
 
-.cDonationSection {
-    width: 60%;
+.pixrDonationSection {
+    width: 65%;
+    height: 50vh;
     margin: 0 auto;
     text-align: center;
     color: var(--text-normal);
 }
 
 /**/
-
-.current-page {
-    font-size: 1.5rem;
-    vertical-align: middle;
-}
-
-.user {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.user__body {
-    padding-left: 20px;
-    padding: 20px;
-}
 
 .current-page {
     font-size: 1.5rem;
@@ -254,62 +220,66 @@ form button {
     margin-bottom: 0;
 }
 
-.pagination__left,
-.pagination__right,
-.pagination__mid {
+.pagination-left,
+.pagination-right,
+.pagination-middle {
     padding: 30px 0;
 }
 
 .pagination a,
 .pagination span {
-    display: block;
     text-align: center;
-    font-family: Helvetica, Arial, sans-serif;
     font-weight: 300;
-    line-height: 42px;
+    vertical-align: middle;
+    line-height: 1em;
     height: 44px;
     color: var(--text-faint);
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .pagination a {
-    padding: 0 16px;
+    padding: 5px 18px;
     max-width: 160px;
-    background-color: transparent;
-    border-radius: 4px;
-    border: 1px solid var(--text-faint);
+    border-radius: 6px;
     text-decoration: none;
     margin: 0 6px;
     transition: all 0.2s ease-in-out;
+    box-shadow: 0px 0px 1px 1px inset var(--background-tertiary);
+    background-color: var(--background-primary);
 }
 
 .pagination a:hover,
 .pagination a.current {
-    border-color: var(--interactive-accent);
+    font-weight: 500;
     color: var(--interactive-accent);
 }
 
-.pagination__mid {
+.pagination a.current::before {
+    content: "◦";
+    text-decoration: none;
+}
+
+.pagination-middle {
     margin: 0 auto;
     display: flex;
     justify-content: center;
 }
 
-.pagination__mid ul {
+.pagination-middle ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.pagination__mid li {
+.pagination-middle li {
     display: inline-block;
 }
 
-.hidden {
+.pagination-hidden {
     display: none !important;
 }
 
-.loader {
+.pagination-loader {
     position: fixed;
     z-index: 9;
     top: 0;
@@ -318,8 +288,8 @@ form button {
     right: 0;
 }
 
-.loader::before,
-.loader::after {
+.pagination-loader::before,
+.pagination-loader::after {
     content: "";
     position: absolute;
     top: 0;
@@ -329,11 +299,11 @@ form button {
     margin: auto;
 }
 
-.loader::before {
+.pagination-loader::before {
     background: var(--background-secondary);
 }
 
-.loader::after {
+.pagination-loader::after {
     content: "";
     font-size: 48px;
     width: 1em;
@@ -348,4 +318,120 @@ form button {
     to {
         transform: rotate(1turn);
     }
+}
+
+/**/
+
+.title.feature-single-hero {
+    display: block;
+    text-align: center;
+    margin-block-start: 0.46em;
+    margin-block-end: 0.46em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    color: var(--text-faint);
+    line-height: 1.1667;
+    font-weight: 700;
+}
+
+.utility-page-content-image-wrapper {
+    display: contents;
+    width: 100%;
+    flex-direction: column;
+    border-radius: 18px;
+    text-align: center;
+    display: block;
+    opacity: 1;
+    overflow: hidden;
+    height: 72vh;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 0 var(--background-modifier-border);
+}
+
+.utility-page-content-image-wrapper img {
+    z-index: 0;
+    height: 100%;
+    min-width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    object-fit: cover;
+    -o-object-fit: cover;
+    vertical-align: bottom;
+}
+
+@keyframes hideAnimation {
+    to {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+}
+
+/*tabs*/
+
+.react-tabs {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.react-tabs__tab-list {
+    border-bottom: 1px solid transparent;
+    margin: 0 0 0;
+    padding: 0;
+    background-color: var(--background-secondary);
+    column-gap: 8px;
+    display: flex;
+    padding: 0px;
+}
+
+.react-tabs__tab {
+    display: inline-block;
+    border: 1px solid transparent;
+    border-bottom: none;
+    bottom: 0;
+    position: relative;
+    list-style: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--text-faint);
+    flex: 1;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    padding: 5px;
+    text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.react-tabs__tab--selected {
+    background: var(--background-primary);
+    border-color: transparent;
+    color: var(--text-normal);
+    border-radius: 5px 5px 0 0;
+}
+
+.react-tabs__tab:focus {
+    box-shadow: 0 0 5px hsl(208, 99%, 50%);
+    border-color: hsl(208, 99%, 50%);
+    outline: none;
+}
+
+.react-tabs__tab:focus:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    left: -4px;
+    right: -4px;
+    bottom: -5px;
+    background: var(--background-primary);
+}
+
+.react-tabs__tab-panel {
+    display: none;
+}
+
+.react-tabs__tab-panel--selected {
+    display: block;
 }

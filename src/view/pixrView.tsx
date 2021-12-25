@@ -1,24 +1,26 @@
 import * as React from "react";
-import MultiPixPlugin from "../plugin/main";
+import PixrPlugin from "../plugin/main";
 import * as ReactDOM from "react-dom";
-import MultiPixApp from "./multipixApp";
+import PixrApp from "./pixrApp";
 import { PluginContext } from "./context";
+//@ts-ignore
 import { App, ItemView, WorkspaceLeaf } from "obsidian";
-import { MultiPixSettings } from "../settings/settingsData";
-import { MultiPix_View_ } from "src/util/constants";
+import { PixrSettings } from "../settings/settingsData";
+import { Pixr_View_ } from "src/util/constants";
 
-export class MultiPixView extends ItemView {
+export class PixrView extends ItemView {
     app: App;
     apiKey = "";
-    plugin: MultiPixPlugin;
-    settings: MultiPixSettings;
+    plugin: PixrPlugin;
+    settings: PixrSettings;
     private reactComponent: React.ReactElement;
+    containerEl: HTMLElement;
 
     constructor(
         leaf: WorkspaceLeaf,
-        plugin: MultiPixPlugin,
+        plugin: PixrPlugin,
         app: App,
-        settings: MultiPixSettings
+        settings: PixrSettings
     ) {
         super(leaf);
         this.plugin = plugin;
@@ -28,18 +30,19 @@ export class MultiPixView extends ItemView {
     }
 
     getViewType(): string {
-        return MultiPix_View_;
+        return Pixr_View_;
     }
 
     getDisplayText(): string {
-        return "MultiPix";
+        return "Pixr";
     }
 
     getIcon(): string {
-        return "multipixicon";
+        return "pixricon";
     }
 
     load(): void {
+        //@ts-ignore
         super.load();
         this.draw();
     }
@@ -47,7 +50,7 @@ export class MultiPixView extends ItemView {
     draw(): void {
         ReactDOM.render(
             <PluginContext.Provider value={this.plugin}>
-                <MultiPixApp />
+                <PixrApp />
             </PluginContext.Provider>,
             this.containerEl.children[1]
         );

@@ -1,4 +1,4 @@
 import * as React from "react";
-import type MultiPixPlugin from "../plugin/main";
+import type PixrPlugin from "../plugin/main";
 
-export const PluginContext = React.createContext<MultiPixPlugin>(null);
+export const PluginContext = React.createContext<PixrPlugin>(null);

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Icon } from "@iconify/react";
+import { wait } from "src/util/utils";
 
 export default class Pagination extends Component<any, any> {
     pages() {
@@ -56,35 +57,41 @@ export default class Pagination extends Component<any, any> {
     render() {
         return (
             <div className="pagination">
-                <div className="pagination__left">
+                <div className="pagination-left">
                     <a
                         href="#"
-                        className={!this.hasPrev() ? "hidden" : ""}
+                        className={!this.hasPrev() ? "pagination-hidden" : ""}
                         onClick={(e) => this.changePage(this.prevPage())}
                     >
-                        <Icon
-                            width="1.25em"
-                            height="1.25em"
-                            icon="bx:bx-chevrons-left"
-                            style={{ verticalAlign: "middle" }}
-                        />
+                        <Icon icon="tabler:chevrons-left" aria-label="Prev" />
                     </a>
                 </div>
 
-                <div className="pagination__mid">
+                <div className="pagination-middle">
                     <ul>
-                        <li className={!this.hasFirst() ? "hidden" : ""}>
+                        <li
+                            className={
+                                !this.hasFirst() ? "pagination-hidden" : ""
+                            }
+                        >
                             <a href="#" onClick={(e) => this.changePage(1)}>
                                 1
                             </a>
                         </li>
-                        <li className={!this.hasFirst() ? "hidden" : ""}>
-                            <span style={{ color: "let(--text-faint)" }}>
+                        <li
+                            className={
+                                !this.hasFirst() ? "pagination-hidden" : ""
+                            }
+                        >
+                            <span style={{ color: "var(--text-faint)" }}>
                                 ...
                             </span>
                         </li>
                         {this.pages().map((page, index) => {
-                            return (
+                            const pager = !this.hasFirst()
+                                ? index <= 3
+                                : index <= 3 && index !== 0;
+                            const pageNumber = pager && (
                                 <li key={index}>
                                     <a
                                         href="#"
@@ -99,14 +106,24 @@ export default class Pagination extends Component<any, any> {
                                     </a>
                                 </li>
                             );
+
+                            return pageNumber;
                         })}
-                        <li className={!this.hasLast() ? "hidden" : ""}>
+                        <li
+                            className={
+                                !this.hasLast() ? "pagination-hidden" : ""
+                            }
+                        >
                             {" "}
-                            <span style={{ color: "let(--text-faint)" }}>
+                            <span style={{ color: "var(--text-faint)" }}>
                                 ...
                             </span>
                         </li>
-                        <li className={!this.hasLast() ? "hidden" : ""}>
+                        <li
+                            className={
+                                !this.hasLast() ? "pagination-hidden" : ""
+                            }
+                        >
                             <a
                                 href="#"
                                 onClick={(e) =>
@@ -119,18 +136,16 @@ export default class Pagination extends Component<any, any> {
                     </ul>
                 </div>
 
-                <div className="pagination__right">
+                <div className="pagination-right">
                     <a
                         href="#"
-                        className={!this.hasNext() ? "hidden" : ""}
-                        onClick={(e) => this.changePage(this.nextPage())}
+                        className={!this.hasNext() ? "pagination-hidden" : ""}
+                        onClick={(e) => {
+                            wait(50000);
+                            this.changePage(this.nextPage());
+                        }}
                     >
-                        <Icon
-                            width="1.25em"
-                            height="1.25em"
-                            icon="bx:bx-chevrons-right"
-                            style={{ verticalAlign: "middle" }}
-                        />
+                        <Icon icon="tabler:chevrons-right" aria-label="Next" />
                     </a>
                 </div>
             </div>

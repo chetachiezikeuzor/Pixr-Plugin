@@ -1,7 +1,7 @@
 {
-    "name": "multipix-plugin",
+    "name": "pixr-plugin",
     "version": "0.12.0",
-    "description": "MultiPix is a plugin that brings Unsplash, the largest open collection of high-quality photos, into Obsidian for a better image-use workflow 🌄.",
+    "description": "Pixr is a plugin that brings Unsplash, the largest open collection of high-quality photos, into Obsidian for a better image-use workflow 🌄.",
     "main": "main.js",
     "scripts": {
         "dev": "rollup --config rollup.config.js -w",
@@ -11,6 +11,7 @@
     "author": "",
     "license": "MIT",
     "devDependencies": {
+        "@codemirror/view": "^0.19.36",
         "@iconify/react": "^3.1.0",
         "@rollup/plugin-commonjs": "^18.0.0",
         "@rollup/plugin-node-resolve": "^11.2.1",
@@ -18,18 +19,23 @@
         "@types/node": "^14.14.37",
         "@types/react": "^17.0.37",
         "@types/react-dom": "^17.0.11",
+        "@types/react-native-dotenv": "^0.2.0",
+        "@types/react-tabs": "^2.3.4",
         "@types/superagent": "^4.1.13",
-        "obsidian": "^0.12.0",
         "prettier": "^2.3.2",
         "rollup": "^2.32.1",
         "tslib": "^2.2.0",
         "typescript": "^4.2.4"
     },
     "dependencies": {
-        "axios": "^0.24.0",
-        "boxicons": "^2.1.1",
+        "chart.js": "^2.9.4",
+        "dotenv": "^10.0.0",
+        "obsidian": "^0.13.11",
         "react": "^17.0.2",
+        "react-bootstrap": "^2.0.4",
         "react-dom": "^17.0.2",
+        "react-scripts": "^5.0.0",
+        "react-tabs": "^3.2.3",
         "superagent": "^6.1.0",
         "unsplash-js": "^7.0.15"
     }

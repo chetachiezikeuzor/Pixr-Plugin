@@ -15,7 +15,9 @@
     },
     "include": [
         "**/*.ts",
-        "src/view/mulitpixView.tsx",
-        "src/view/usePagination.tsx"
+        "*.env",
+        "src/view/pixrView.tsx",
+        "src/view/usePagination.tsx",
+        "private.js"
     ]
 }

@@ -1,10 +1,10 @@
 {
-    "id": "multipix-plugin",
-    "name": "MultiPix",
+    "id": "pixr-plugin",
+    "name": "Pixr",
     "version": "1.0.1",
     "minAppVersion": "0.9.12",
-    "description": "Multiplix is a plugin that brings Unsplash, the largest open collection of high-quality photos, into Obsidian for a better image-use workflow 🌄.",
+    "description": "Pixr is a plugin that brings Unsplash, the largest open collection of high-quality photos, into Obsidian for a better image-use workflow 🌄.",
     "author": "chetachi",
     "authorUrl": "https://github.com/chetachiezikeuzor",
-    "isDesktopOnly": false
+    "isDesktopOnly": true
 }
