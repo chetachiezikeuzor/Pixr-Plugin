@@ -2,7 +2,7 @@ import React from "react";
 import * as ReactDOM from "react-dom";
 import { App, Menu } from "obsidian";
 import MenuTabs from "./statsTabs";
-import { setAttributes } from "../util/setAttributes";
+import { setAttributes } from "../util/utils";
 
 export default function statsMenu(
     app: App,

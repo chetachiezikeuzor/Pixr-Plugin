@@ -1,81 +1,53 @@
 import React from "react";
+import {
+    STATS_DIMENSIONS_STYLE,
+    STATS_DIMENSIONS_IMG_STYLE,
+} from "../util/constants";
 
 const StatsDimensions = ({ photo, dimensions }: any) => {
-    const style = {
-        height: "fit-content",
-        alignItems: "center",
-        cursor: "pointer",
-        color: "var(--text-on-accent)",
-        position: "absolute" as "absolute",
-        padding: "0",
-        Clear: "both",
-        fontWeight: 900,
-        TextAlign: "inherit",
-        TextDecoration: "none",
-        WhiteSpace: "nowrap",
-        gridGap: "8px",
-        justifyContent: "start",
-        backgroundColor: "transparent",
-        borderRadius: 0,
-        margin: "auto",
-        display: "block",
-        bottom: "0px",
-    };
-    const image = {
-        height: "100%",
-        minWidth: "100%",
-        overflow: "hidden",
-        cursor: "pointer",
-        objectFit: "cover",
-        filter: "brightness(0.85) blur(3px)",
-        position: "relative" as "relative",
-        verticalAlign: "bottom",
-    };
     return (
-        <>
-            <div
-                style={Object.assign({
-                    maxWidth: "9.8rem",
-                    height: "165px",
-                    flexGrow: 1,
-                    overflow: "hidden",
-                })}
+        <div
+            style={Object.assign({
+                maxWidth: "9.6rem",
+                height: "165px",
+                flexGrow: 1,
+                overflow: "hidden",
+            })}
+        >
+            <img
+                style={Object.assign(STATS_DIMENSIONS_IMG_STYLE)}
+                src={photo.urls.regular}
+            ></img>
+
+            <span
+                style={Object.assign(
+                    {
+                        fontSize: "17.5px",
+                        textAlign: "center",
+                        width: "100%",
+                        top: "8px",
+                    },
+                    STATS_DIMENSIONS_STYLE
+                )}
             >
-                <img
-                    style={Object.assign(image, { maxWidth: "8.9rem" })}
-                    src={photo.urls.regular}
-                ></img>
+                {dimensions.width} x {dimensions.height} px
+            </span>
 
-                <span
-                    style={Object.assign(
-                        {
-                            fontSize: "medium",
-                            textAlign: "center",
-                            width: "100%",
-                            top: "8px",
-                        },
-                        style
-                    )}
-                >
-                    {dimensions.width} x {dimensions.height} px
-                </span>
-
-                <span
-                    style={Object.assign(
-                        {
-                            transform: "translate(-50%, 26px)",
-                            fontSize: "12px",
-                            width: "fit-content",
-                            left: "50%",
-                            top: 0,
-                        },
-                        style
-                    )}
-                >
-                    intrinsic
-                </span>
-            </div>
-        </>
+            <span
+                style={Object.assign(
+                    {
+                        transform: "translate(-50%, 26px)",
+                        fontSize: "12px",
+                        width: "fit-content",
+                        left: "50%",
+                        top: 0,
+                    },
+                    STATS_DIMENSIONS_STYLE
+                )}
+            >
+                intrinsic
+            </span>
+        </div>
     );
 };
 

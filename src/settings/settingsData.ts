@@ -1,19 +1,21 @@
 import { Embed } from "src/util/types";
 
 export interface PixrSettings {
-    mySetting: string;
-    apiKey: string;
+    customApiKey: string;
     folderPath: string;
     embedType: Embed;
     downloadType: string;
     pixrViewPosition: string;
+    namingConvention: string;
+    showDownloadConfirmationModal: boolean;
 }
 
 export const DEFAULT_SETTINGS: PixrSettings = {
-    mySetting: "default",
-    apiKey: "",
+    customApiKey: "",
     folderPath: "/",
     embedType: "markdown",
     downloadType: "medium",
     pixrViewPosition: "left",
+    namingConvention: "YYYY-MM-DD HHmmss",
+    showDownloadConfirmationModal: true,
 };

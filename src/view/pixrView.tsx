@@ -2,18 +2,15 @@ import * as React from "react";
 import PixrPlugin from "../plugin/main";
 import * as ReactDOM from "react-dom";
 import PixrApp from "./pixrApp";
-import { PluginContext } from "./context";
-//@ts-ignore
+import { PluginContext } from "../util/context";
 import { App, ItemView, WorkspaceLeaf } from "obsidian";
 import { PixrSettings } from "../settings/settingsData";
-import { Pixr_View_ } from "src/util/constants";
+import { PIXR_VIEW_ } from "src/util/constants";
 
 export class PixrView extends ItemView {
     app: App;
-    apiKey = "";
     plugin: PixrPlugin;
     settings: PixrSettings;
-    private reactComponent: React.ReactElement;
     containerEl: HTMLElement;
 
     constructor(
@@ -30,7 +27,7 @@ export class PixrView extends ItemView {
     }
 
     getViewType(): string {
-        return Pixr_View_;
+        return PIXR_VIEW_;
     }
 
     getDisplayText(): string {
@@ -38,11 +35,10 @@ export class PixrView extends ItemView {
     }
 
     getIcon(): string {
-        return "pixricon";
+        return "pixr-icon";
     }
 
     load(): void {
-        //@ts-ignore
         super.load();
         this.draw();
     }

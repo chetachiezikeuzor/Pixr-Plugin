@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Icon } from "@iconify/react";
 import { wait } from "src/util/utils";
 
 export default class Pagination extends Component<any, any> {
@@ -63,7 +62,28 @@ export default class Pagination extends Component<any, any> {
                         className={!this.hasPrev() ? "pagination-hidden" : ""}
                         onClick={(e) => this.changePage(this.prevPage())}
                     >
-                        <Icon icon="tabler:chevrons-left" aria-label="Prev" />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            role="img"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                        >
+                            <title>Prev</title>
+                            <g
+                                className="icon-tabler"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            >
+                                <path d="M7 7l5 5l-5 5" />
+                                <path d="M13 7l5 5l-5 5" />
+                            </g>
+                        </svg>
                     </a>
                 </div>
 
@@ -145,7 +165,28 @@ export default class Pagination extends Component<any, any> {
                             this.changePage(this.nextPage());
                         }}
                     >
-                        <Icon icon="tabler:chevrons-right" aria-label="Next" />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            role="img"
+                            width="1em"
+                            height="1em"
+                            preserveAspectRatio="xMidYMid meet"
+                            viewBox="0 0 24 24"
+                        >
+                            <title>Next</title>
+                            <g
+                                className="icon-tabler"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            >
+                                <path d="M7 7l5 5l-5 5" />
+                                <path d="M13 7l5 5l-5 5" />
+                            </g>
+                        </svg>
                     </a>
                 </div>
             </div>

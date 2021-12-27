@@ -1,38 +1,23 @@
-import * as dotenv from "dotenv";
-dotenv.config({ path: ".env" });
 import { config } from "private";
 import { createApi } from "unsplash-js";
 import { SelectOption } from "./types";
-export const Pixr_View_ = "pixr-view-container";
-import { capitalizeFirstLetter } from "./utils";
+
+export const PIXR_VIEW_ = "pixr-view-container";
 export const PIXR_VIEW_SIDE = ["right", "left"];
-import { PixrSettings } from "src/settings/settingsData";
 export const EMBED_TYPES = ["markdown", "html"] as const;
 export const BYTE_SIZES = ["Bytes", "KB", "MB", "GB", "TB"];
 export const SI_SYMBOLS = ["", "k", "M", "G", "T", "P", "E"];
 
-export const unsplash = createApi({
+export const UNSPLASH = createApi({
     accessKey: config.UNSPLASH_ACCESSKEY,
 });
 
-export const DROPDOWN_OPTIONS: SelectOption[] = [
-    {
-        label: "xsmall",
-        value: "thumb",
-    },
-    {
-        label: "small",
-        value: "small",
-    },
-    {
-        label: "medium",
-        value: "regular",
-    },
-    {
-        label: "large",
-        value: "full",
-    },
-];
+export const DROPDOWN_OPTIONS: SelectOption = {
+    xsmall: "thumb",
+    small: "small",
+    medium: "regular",
+    large: "full",
+};
 
 export const LOAD_STATE = {
     SUCCESS: "SUCCESS",
@@ -41,32 +26,83 @@ export const LOAD_STATE = {
     SUBMITTED: "SUBMITTED",
 };
 
-export const dragNDropImage = (
-    settings: PixrSettings,
-    srcText: any,
-    altText: any
-) => {
-    const imageAlt = altText[1].replaceAll("&quot;", "");
-    if (settings.embedType === "html")
-        return `<img src="${
-            srcText[1]
-        }" width="100%" alt="${capitalizeFirstLetter(imageAlt)}"/>`;
-    else if (settings.embedType === "markdown")
-        return `![${capitalizeFirstLetter(imageAlt)}](${srcText[1]})`;
+export const DOWNLOAD_MODAL_STYLE = {
+    position: "fixed" as "fixed",
+    top: "50%",
+    transform: "translateY(-50%)",
+    maxWidth: "480px",
+    margin: "0 auto",
+    left: "0",
+    right: "0",
+    textAlign: "left" as "left",
 };
 
-export const copyText = (
-    settings: PixrSettings,
-    imageDesc: string,
-    now: any,
-    vault: string,
-    fileExtension: string,
-    filePath: string
-) => {
-    if (settings.embedType === "html")
-        return `<img src="app:///local${vault}/${filePath}" width="100%"/>`;
-    else if (settings.embedType === "markdown")
-        return `![[${
-            imageDesc ? imageDesc : "image"
-        } ${now}.${fileExtension}]]`;
+export const DOWNLOAD_SPANS_STYLE = {
+    height: "auto",
+    width: "inherit",
+    alignItems: "center",
+    fontSize: "16.5px",
+    cursor: "pointer",
+    padding: "0",
+    Clear: "both",
+    fontWeight: 500,
+    TextAlign: "left",
+    TextDecoration: "none",
+    WhiteSpace: "nowrap",
+    gridGap: "8px",
+    display: "flex",
+    alignContent: "center",
+    justifyContent: "start",
+    backgroundColor: "transparent",
+    borderRadius: 0,
+};
+
+export const STATS_DIMENSIONS_STYLE = {
+    height: "fit-content",
+    alignItems: "center",
+    cursor: "pointer",
+    color: "var(--text-on-accent)",
+    position: "absolute" as "absolute",
+    padding: "0",
+    Clear: "both",
+    fontWeight: 900,
+    TextAlign: "inherit",
+    TextDecoration: "none",
+    WhiteSpace: "nowrap",
+    gridGap: "8px",
+    justifyContent: "start",
+    backgroundColor: "transparent",
+    borderRadius: 0,
+    margin: "auto",
+    display: "block",
+    bottom: "0px",
+};
+
+export const STATS_DIMENSIONS_IMG_STYLE = {
+    height: "100%",
+    minWidth: "100%",
+    overflow: "hidden",
+    cursor: "pointer",
+    objectFit: "cover",
+    filter: "brightness(0.85) blur(3px)",
+    position: "relative" as "relative",
+    verticalAlign: "bottom",
+};
+
+export const STATS_ICONS_STYLE = {
+    height: "auto",
+    width: "inherit",
+    alignItems: "center",
+    fontSize: "16.5px",
+    cursor: "pointer",
+    padding: ".36rem .85rem",
+    Clear: "both",
+    fontWeight: 500,
+    TextAlign: "inherit",
+    TextDecoration: "none",
+    WhiteSpace: "nowrap",
+    gridGap: "8px",
+    justifyContent: "start",
+    backgroundColor: "transparent",
+    borderRadius: 0,
 };

@@ -2,9 +2,9 @@ import { Editor, Plugin } from "obsidian";
 import { addIcons } from "../icons/customIcons";
 import { PixrView } from "../view/pixrView";
 import PixrSettingsTab from "../settings/settingsTab";
-import { DEFAULT_SETTINGS } from "src/settings/settingsData";
-import { PixrSettings } from "src/settings/settingsData";
-import { dragNDropImage, Pixr_View_ } from "src/util/constants";
+import { PixrSettings, DEFAULT_SETTINGS } from "src/settings/settingsData";
+import { PIXR_VIEW_ } from "src/util/constants";
+import { dragNDropImage } from "../util/utils";
 import { EditorView } from "@codemirror/view";
 
 export default class PixrPlugin extends Plugin {
@@ -15,41 +15,38 @@ export default class PixrPlugin extends Plugin {
 
     async onload() {
         addIcons();
-
         await this.loadSettings();
         console.log("Pixr v" + this.manifest.version + " loaded");
-
         this.addSettingTab(new PixrSettingsTab(this.app, this));
-
         this.registerView(
-            Pixr_View_,
+            PIXR_VIEW_,
             (leaf: any) => new PixrView(leaf, this, this.app, this.settings)
         );
 
         this.addCommand({
             id: "open-pixr-view",
             name: "Open Pixr View",
-            icon: "pixricon",
+            icon: "pixr-icon",
             callback: async () => {
                 if (
-                    this.app.workspace.getLeavesOfType(Pixr_View_).length == 0
+                    this.app.workspace.getLeavesOfType(PIXR_VIEW_).length == 0
                 ) {
                     if (this.settings.pixrViewPosition == "left") {
                         await this.app.workspace
                             .getLeftLeaf(false)
                             .setViewState({
-                                type: Pixr_View_,
+                                type: PIXR_VIEW_,
                             });
                     } else {
                         await this.app.workspace
                             .getRightLeaf(false)
                             .setViewState({
-                                type: Pixr_View_,
+                                type: PIXR_VIEW_,
                             });
                     }
                 }
                 this.app.workspace.revealLeaf(
-                    this.app.workspace.getLeavesOfType(Pixr_View_).first()
+                    this.app.workspace.getLeavesOfType(PIXR_VIEW_).first()
                 );
             },
         });
@@ -105,17 +102,17 @@ export default class PixrPlugin extends Plugin {
 
     onunload() {
         this.app.workspace
-            .getLeavesOfType(Pixr_View_)
+            .getLeavesOfType(PIXR_VIEW_)
             .forEach((leaf: any) => leaf.detach());
         console.log("Pixr unloaded");
     }
 
     addPixrView() {
-        if (this.app.workspace.getLeavesOfType(Pixr_View_).length) {
+        if (this.app.workspace.getLeavesOfType(PIXR_VIEW_).length) {
             return;
         }
         this.app.workspace.getRightLeaf(false).setViewState({
-            type: Pixr_View_,
+            type: PIXR_VIEW_,
         });
     }
 

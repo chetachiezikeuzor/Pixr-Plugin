@@ -1,9 +1,8 @@
-import { unsplash } from "src/util/constants";
 import NotFound from "./notFound";
 import ResultList from "./resultList";
 import Pagination from "./pagination";
 import React, { Component } from "react";
-import { LOAD_STATE } from "src/util/constants";
+import { LOAD_STATE, UNSPLASH } from "../util/constants";
 
 export default class PixrApp extends Component<any, any> {
     constructor(props: any) {
@@ -20,6 +19,7 @@ export default class PixrApp extends Component<any, any> {
             query: "",
         };
     }
+
     handleChange(e: any) {
         e.preventDefault();
         this.setState({ query: e.target.value });
@@ -32,7 +32,8 @@ export default class PixrApp extends Component<any, any> {
     fetchPhotos(page = 1) {
         const { query } = this.state;
         this.setState({ loadState: LOAD_STATE.LOADING });
-        unsplash.photos
+
+        UNSPLASH.photos
             .getRandom({
                 count: 1,
             })
@@ -55,7 +56,7 @@ export default class PixrApp extends Component<any, any> {
                 console.log(reason);
             });
 
-        unsplash.search
+        UNSPLASH.search
             .getPhotos({
                 query: query,
                 page: page,
@@ -90,7 +91,7 @@ export default class PixrApp extends Component<any, any> {
                 console.log(reason);
             });
 
-        unsplash.photos
+        UNSPLASH.photos
             .getRandom({
                 count: 8,
             })

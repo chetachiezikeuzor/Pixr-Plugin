@@ -1,9 +1,8 @@
 import Chart from "chart.js";
 import moment from "moment";
 import React, { Component } from "react";
-import { unsplash } from "src/util/constants";
-import { unformatDate } from "src/util/utils";
-import { abbreviateNumber } from "src/util/utils";
+import { UNSPLASH } from "src/util/constants";
+import { unformatDate, abbreviateNumber } from "src/util/utils";
 
 export default class StatsCharts extends Component<any, any> {
     constructor(props: any) {
@@ -28,14 +27,14 @@ export default class StatsCharts extends Component<any, any> {
         const startDate = new Date(startOfWeek as any);
         const ctx = this.chartRef.current.getContext("2d");
 
-        for (i = 2; i >= 0; i--) {
+        for (i = 3; i >= 1; i--) {
             (date as any) = moment(startDate)
                 .subtract(i, "weeks")
                 .format("YYYY-MM-DD");
             labels.push(date.toString());
         }
 
-        await unsplash.photos
+        await UNSPLASH.photos
             .getStats({
                 photoId: this.props.photo.id,
             })
@@ -162,24 +161,22 @@ export default class StatsCharts extends Component<any, any> {
 
     render() {
         return (
-            <>
-                <div
+            <div
+                style={{
+                    padding: ".5rem 0 .3rem",
+                    overflow: "hidden",
+                    overflowY: "scroll",
+                }}
+            >
+                <canvas
+                    id="pixr-stats-chart"
+                    ref={this.chartRef}
                     style={{
-                        padding: ".5rem 0 .3rem",
-                        overflow: "hidden",
-                        overflowY: "scroll",
+                        height: "auto",
+                        maxWidth: "9.6rem",
                     }}
-                >
-                    <canvas
-                        id="pixr-stats-chart"
-                        ref={this.chartRef}
-                        style={{
-                            height: "auto",
-                            maxWidth: "9.6rem",
-                        }}
-                    />
-                </div>
-            </>
+                />
+            </div>
         );
     }
 }

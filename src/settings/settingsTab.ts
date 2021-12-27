@@ -1,10 +1,15 @@
 import { Embed } from "src/util/types";
-import { DROPDOWN_OPTIONS, PIXR_VIEW_SIDE } from "../util/constants";
-//@ts-ignore
-import { App, PluginSettingTab, Setting } from "obsidian";
-import { EMBED_TYPES } from "../util/constants";
-
 import PixrPlugin from "../plugin/main";
+import { currentLocale, setAttributes } from "src/util/utils";
+import { App, PluginSettingTab, Setting } from "obsidian";
+import { FolderSuggest } from "../suggest/folderSuggester";
+import {
+    DROPDOWN_OPTIONS,
+    PIXR_VIEW_SIDE,
+    EMBED_TYPES,
+} from "../util/constants";
+import { DEFAULT_SETTINGS } from "./settingsData";
+import moment from "moment";
 
 export default class PixrSettingsTab extends PluginSettingTab {
     plugin: PixrPlugin;
@@ -14,7 +19,6 @@ export default class PixrSettingsTab extends PluginSettingTab {
     }
 
     display(): void {
-        //@ts-ignore
         let { containerEl } = this;
         containerEl.empty();
         containerEl.createEl("h1", { text: "Pixr" });
@@ -24,29 +28,82 @@ export default class PixrSettingsTab extends PluginSettingTab {
         });
         containerEl.createEl("h2", { text: "Plugin Settings" });
 
-        const apiKeySetting = new Setting(containerEl);
+        let apiKeySetting = new Setting(containerEl);
         apiKeySetting
-            .setName("Custom APIKey")
+            .setName("Custom api key")
             .setDesc(
                 "You will need to create your own key to query images from Unsplash."
             )
             .addText((text: any) =>
                 text
-                    .setPlaceholder("APIKey")
+                    .setPlaceholder("custom api key")
                     .setValue("")
                     .onChange(async (value: any) => {
-                        this.plugin.settings.apiKey = value;
+                        this.plugin.settings.customApiKey = value;
                         await this.plugin.saveSettings();
                     })
             );
-        apiKeySetting.descEl.appendChild(
-            createApiKeyLink("https://github.com/chetachiezikeuzor/Pixr-Plugin")
+        apiKeySetting.infoEl.appendChild(
+            createLinkText(
+                "https://github.com/chetachiezikeuzor/Pixr-Plugin",
+                "Get api key"
+            )
+        );
+
+        new Setting(this.containerEl)
+            .setName("Image folder location")
+            .setDesc(
+                "Set a folder path by which to save your images. The default is the root of your vault."
+            )
+            .addSearch((search) => {
+                new FolderSuggest(this.app, search.inputEl);
+                search
+                    .setPlaceholder("/path/to/image/download/location")
+                    .setValue(this.plugin.settings.folderPath)
+                    .onChange((newFolder) => {
+                        this.plugin.settings.folderPath = newFolder;
+                        this.plugin.saveSettings();
+                    });
+                // @ts-ignore
+                search.containerEl.addClass("pixr-search");
+                // @ts-ignore
+                setAttributes(search.containerEl, { style: "width: 380px" });
+            });
+
+        let namingConvention = new Setting(this.containerEl)
+            .setName("Naming convention")
+            .setDesc(
+                "The default date and time format for downloaded images. (see moment.js date format options)." +
+                    " Currently: " +
+                    moment(new Date()).format(
+                        this.plugin.settings.namingConvention
+                    )
+            )
+            .addText((text) =>
+                text
+                    .setPlaceholder(DEFAULT_SETTINGS.namingConvention)
+                    .setValue(this.plugin.settings.namingConvention)
+                    .onChange(async (value) => {
+                        namingConvention.setDesc(
+                            "The default date and time format for downloaded images. (see moment.js date format options)." +
+                                " Currently: " +
+                                moment(new Date()).format(value)
+                        );
+                        this.plugin.settings.namingConvention = value;
+                        await this.plugin.saveSettings();
+                    })
+            );
+        namingConvention.infoEl.appendChild(
+            createLinkText(
+                "https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/",
+                "Format options"
+            )
         );
 
         new Setting(containerEl)
-            .setName("Position view")
+            .setName("Position Pixr view")
             .setDesc(
-                "Choose which side panel you'd like the image results panel to bind (right or left)."
+                "Choose which side you'd like the image results panel to bind (right or left)."
             )
             .addDropdown((dropdown: any) => {
                 let directions: Record<string, string> = {};
@@ -62,9 +119,9 @@ export default class PixrSettingsTab extends PluginSettingTab {
                     });
             });
         new Setting(containerEl)
-            .setName("Drag 'n drop")
+            .setName("Drag 'n drop images ")
             .setDesc(
-                "Set a default  embed type for drag 'n drop images from your image results."
+                "Set a default embed type for drag 'n drop images from your image results."
             )
             .addDropdown((dropdown: any) => {
                 let types: Record<string, string> = {};
@@ -80,14 +137,16 @@ export default class PixrSettingsTab extends PluginSettingTab {
             });
 
         new Setting(containerEl)
-            .setName("Image sizing")
+            .setName("Default image size")
             .setDesc(
                 "Set a default sizing for your image result download sizing dropdown component."
             )
             .addDropdown((dropdown: any) => {
                 let types: Record<string, string> = {};
+                Object.keys(DROPDOWN_OPTIONS).map(
+                    (type) => (types[type] = type)
+                );
 
-                DROPDOWN_OPTIONS.map(({ label }) => (types[label] = label));
                 dropdown.addOptions(types);
                 dropdown
                     .setValue(this.plugin.settings.downloadType)
@@ -99,19 +158,32 @@ export default class PixrSettingsTab extends PluginSettingTab {
             });
 
         new Setting(containerEl)
-            .setName("Folder path")
+            .setName("Confirm download")
             .setDesc(
-                'Set a folder path by which to save your images. The default is the root of your vault \'/\'. If you do wish it, leave out the first slash in front. e.g. To save the image in "Images," type in "Images" (no quotes). To save an image to "VAULT NAME/Attachments/Images," type in "Attachments/Images."'
+                "Set whether or not you want to have a confirmation modal before downloading images."
             )
-            .addText((text: any) =>
-                text
-                    .setPlaceholder("/")
-                    .setValue(this.plugin.settings.folderPath)
+            .addToggle((toggle) => {
+                toggle
+                    .setValue(
+                        this.plugin.settings.showDownloadConfirmationModal
+                    )
                     .onChange(async (value: any) => {
-                        this.plugin.settings.folderPath = value;
+                        this.plugin.settings.showDownloadConfirmationModal =
+                            value;
+                        this.plugin.settings.showDownloadConfirmationModal;
                         await this.plugin.saveSettings();
-                    })
-            );
+                    });
+            });
+
+        let unsplashLicenseSetting = new Setting(containerEl)
+            .setName("Questions?")
+            .setDesc(
+                "This plugin uses Unsplash image database, the largest open collection of high-quality photos. If you'd like to learn more about image use, please use the button to visit Unplash's Licensing."
+            )
+            .setClass("extra");
+        unsplashLicenseSetting.controlEl.appendChild(
+            createLinkText("https://unsplash.com/license", "Unsplash License")
+        );
 
         const pixrDonationDiv = containerEl.createEl("div", {
             cls: "pixrDonationSection",
@@ -136,10 +208,19 @@ export default class PixrSettingsTab extends PluginSettingTab {
     }
 }
 
-const createApiKeyLink = (link: string): HTMLElement => {
+const createLicenseLink = (link: string): HTMLElement => {
+    const a = createEl("a");
+    a.setAttr("href", link);
+    return a;
+};
+
+const createLinkText = (link: string, text: string): HTMLElement => {
     const a = createEl("a");
     a.setAttribute("href", link);
-    a.appendText(" " + "Use this link to get your custom APIKey.");
+    const b = createEl("button");
+    setAttributes(b, { style: "margin-top: 8px;" });
+    b.appendText(text);
+    a.appendChild(b);
     return a;
 };
 

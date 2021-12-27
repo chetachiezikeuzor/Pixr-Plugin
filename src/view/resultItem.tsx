@@ -1,24 +1,79 @@
-import React, { useRef, useEffect, useState } from "react";
 import {
     capitalizeFirstLetter,
+    downloadImage,
     getImageBlob,
     getImageDimensions,
 } from "../util/utils";
-import { DROPDOWN_OPTIONS } from "../util/constants";
-import { downloadImage } from "../util/utils";
-import { Dropdown } from "./dropdown";
+import { useModal } from "../util/hooks";
 import statsMenu from "../menu/statsMenu";
-import ConfirmDownloadModal from "src/modals/confirmDownload";
+import { DROPDOWN_OPTIONS } from "../util/constants";
+import React, { useRef, useEffect, useState } from "react";
+import { DownloadConfirmModal } from "../modal/downloadConfirmModal";
 
 const ResultItem = ({ photo, plugin }: any) => {
+    const mounted = useRef(false);
     const dropdownRef = useRef<HTMLSelectElement>(null);
     const resultImageRef = useRef<HTMLImageElement>(null);
     const actionButtonsRef = useRef<HTMLDivElement>(null);
-    const [selected, setSelected] = useState(plugin.settings.downloadType);
+    const parentElementRef = useRef<HTMLLIElement>(null);
+    const [selected, setSelected] = useState(null);
+    const [dimensions, setDimensions] = useState(null);
+    const [chosenImgUrl, setChosenImgUrl] = useState();
+    const [blob, setBlob] = useState(null);
+    const { isShowing, toggle } = useModal();
+
+    const [labels, setLabels] = useState(Object.keys(DROPDOWN_OPTIONS));
+    const [values, setValues] = useState(Object.values(DROPDOWN_OPTIONS));
+
+    const selectLabels = labels.map((selectLabels) => selectLabels);
+    const selectValues = values.map((selectValues) => selectValues);
+
+    const handleNewSelection = (e: any) => {
+        setChosenImgUrl(photo.urls[DROPDOWN_OPTIONS[e.target.value]]);
+        setSelected(selectLabels.find((el) => el === e.target.value));
+    };
+
+    useEffect(() => {
+        mounted.current = true;
+
+        return () => {
+            mounted.current = false;
+        };
+    }, []);
 
     useEffect(() => {
         if (dropdownRef.current) {
-            setSelected(selected);
+            setChosenImgUrl(
+                photo.urls[
+                    DROPDOWN_OPTIONS[
+                        dropdownRef.current.options[
+                            dropdownRef.current.selectedIndex
+                        ].value
+                    ]
+                ]
+            );
+            getImageBlob(
+                photo.urls[
+                    DROPDOWN_OPTIONS[
+                        dropdownRef.current.options[
+                            dropdownRef.current.selectedIndex
+                        ].value
+                    ]
+                ]
+            ).then((blob) => {
+                if (mounted.current) setBlob(blob);
+            });
+            getImageDimensions(
+                photo.urls[
+                    DROPDOWN_OPTIONS[
+                        dropdownRef.current.options[
+                            dropdownRef.current.selectedIndex
+                        ].value
+                    ]
+                ]
+            ).then((blob) => {
+                if (mounted.current) setDimensions(blob);
+            });
         }
     }, []);
 
@@ -28,7 +83,22 @@ const ResultItem = ({ photo, plugin }: any) => {
 
     return (
         <>
-            <li key={photo.id} className="result-item">
+            <li key={photo.id} className="result-item" ref={parentElementRef}>
+                {plugin.settings.showDownloadConfirmationModal == true ? (
+                    <DownloadConfirmModal
+                        isShowing={isShowing}
+                        hide={toggle}
+                        showDownloadConfirmationModal={true}
+                        parentElement={parentElementRef.current}
+                        imgTitle={altDescription}
+                        imgUrl={photo.urls.regular}
+                        chosenImgUrl={chosenImgUrl}
+                        blob={blob}
+                        plugin={plugin}
+                        dimensions={dimensions}
+                    />
+                ) : null}
+
                 <a
                     className="externalLinkIcon"
                     style={{
@@ -61,6 +131,7 @@ const ResultItem = ({ photo, plugin }: any) => {
                         </g>
                     </svg>
                 </a>
+
                 <img
                     ref={resultImageRef}
                     src={photo.urls.regular}
@@ -91,30 +162,63 @@ const ResultItem = ({ photo, plugin }: any) => {
                         </span>
                     </span>
                     <span className="action-buttons" ref={actionButtonsRef}>
-                        <Dropdown
-                            plugin={plugin}
-                            innerRef={dropdownRef}
-                            options={DROPDOWN_OPTIONS}
-                            selected={selected}
-                            onSelectedChange={(e) => {
-                                setSelected(selected);
+                        <select
+                            ref={dropdownRef}
+                            defaultValue={plugin.settings.downloadType}
+                            onChange={async (e) => {
+                                handleNewSelection(e);
+                                setBlob(
+                                    await getImageBlob(
+                                        photo.urls[
+                                            DROPDOWN_OPTIONS[e.target.value]
+                                        ]
+                                    )
+                                );
+                                setDimensions(
+                                    await getImageDimensions(
+                                        photo.urls[
+                                            DROPDOWN_OPTIONS[e.target.value]
+                                        ]
+                                    )
+                                );
                             }}
-                        />
+                            style={{
+                                paddingTop: "1.5px",
+                                paddingBottom: "2px",
+                                minWidth: "90px",
+                            }}
+                            className="dropdown action-button"
+                        >
+                            {selectLabels.map((value, key) => (
+                                <option
+                                    key={key}
+                                    className="item"
+                                    value={value}
+                                >
+                                    {value}
+                                </option>
+                            ))}
+                        </select>
+
                         <span
                             className="action-button"
-                            onClick={(e) =>
-                                downloadImage(
-                                    e,
-                                    photo.urls[
-                                        dropdownRef.current.options[
-                                            dropdownRef.current.selectedIndex
-                                        ].value
-                                    ],
-                                    altDescription,
-                                    dropdownRef,
-                                    plugin
-                                )
-                            }
+                            onClick={(e) => {
+                                plugin.settings.showDownloadConfirmationModal
+                                    ? toggle()
+                                    : downloadImage(
+                                          e,
+                                          photo.urls[
+                                              DROPDOWN_OPTIONS[
+                                                  dropdownRef.current.options[
+                                                      dropdownRef.current
+                                                          .selectedIndex
+                                                  ].value
+                                              ]
+                                          ],
+                                          capitalizeFirstLetter(altDescription),
+                                          plugin
+                                      );
+                            }}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -176,32 +280,36 @@ const ResultItem = ({ photo, plugin }: any) => {
                                 </g>
                             </svg>
                         </span>
-
                         <span
                             className="action-button"
-                            onClick={async (e) =>
+                            onClick={async (e) => {
                                 statsMenu(
                                     plugin.app,
                                     actionButtonsRef.current,
                                     photo,
                                     await getImageBlob(
                                         photo.urls[
-                                            dropdownRef.current.options[
-                                                dropdownRef.current
-                                                    .selectedIndex
-                                            ].value
+                                            DROPDOWN_OPTIONS[
+                                                dropdownRef.current.options[
+                                                    dropdownRef.current
+                                                        .selectedIndex
+                                                ].value
+                                            ]
                                         ]
                                     ),
+
                                     await getImageDimensions(
                                         photo.urls[
-                                            dropdownRef.current.options[
-                                                dropdownRef.current
-                                                    .selectedIndex
-                                            ].value
+                                            DROPDOWN_OPTIONS[
+                                                dropdownRef.current.options[
+                                                    dropdownRef.current
+                                                        .selectedIndex
+                                                ].value
+                                            ]
                                         ]
                                     )
-                                )
-                            }
+                                );
+                            }}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
