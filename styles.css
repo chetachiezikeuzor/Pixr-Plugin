@@ -103,11 +103,11 @@
 }
 
 .result-item:hover .result-options {
-    transform: translateY(-41px);
-    -webkit-transform: translateY(-41px);
-    -moz-transform: translateY(-41px);
-    -ms-transform: translateY(-41px);
-    -o-transform: translateY(-41px);
+    transform: translateY(-38px);
+    -webkit-transform: translateY(-38px);
+    -moz-transform: translateY(-38px);
+    -ms-transform: translateY(-38px);
+    -o-transform: translateY(-38px);
 }
 
 .result-options {

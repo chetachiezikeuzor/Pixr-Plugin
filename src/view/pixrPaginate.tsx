@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { wait } from "src/util/utils";
 
-export default class Pagination extends Component<any, any> {
+export default class PixrPaginate extends Component<any, any> {
     pages() {
         let pages = [];
         for (let i = this.rangeStart(); i <= this.rangeEnd(); i++) {
@@ -193,8 +193,3 @@ export default class Pagination extends Component<any, any> {
         );
     }
 }
-
-//@ts-ignore
-Pagination.defaultProps = {
-    pageRange: 2,
-};

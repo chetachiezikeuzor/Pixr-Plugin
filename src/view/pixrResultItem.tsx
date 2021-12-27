@@ -10,7 +10,7 @@ import { DROPDOWN_OPTIONS } from "../util/constants";
 import React, { useRef, useEffect, useState } from "react";
 import { DownloadConfirmModal } from "../modal/downloadConfirmModal";
 
-const ResultItem = ({ photo, plugin }: any) => {
+const PixrResultItem = ({ photo, plugin }: any) => {
     const mounted = useRef(false);
     const dropdownRef = useRef<HTMLSelectElement>(null);
     const resultImageRef = useRef<HTMLImageElement>(null);
@@ -341,4 +341,4 @@ const ResultItem = ({ photo, plugin }: any) => {
         </>
     );
 };
-export default ResultItem;
+export default PixrResultItem;

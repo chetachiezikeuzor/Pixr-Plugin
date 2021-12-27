@@ -1,6 +1,6 @@
-import NotFound from "./notFound";
-import ResultList from "./resultList";
-import Pagination from "./pagination";
+import PixrNotFound from "./pixrNotFound";
+import PixrResultList from "./pixrResultList";
+import PixrPaginate from "./pixrPaginate";
 import React, { Component } from "react";
 import { LOAD_STATE, UNSPLASH } from "../util/constants";
 
@@ -132,16 +132,16 @@ export default class PixrApp extends Component<any, any> {
                 </form>
 
                 {this.state.loadState === LOAD_STATE.ERROR ? (
-                    <NotFound data={this.state.randPhoto} />
+                    <PixrNotFound data={this.state.randPhoto} />
                 ) : this.state.loadState === LOAD_STATE.SUBMITTED ? (
                     <div className="pagination-loader" />
                 ) : (
-                    <ResultList
+                    <PixrResultList
                         data={this.state.photos}
                         update={this.state.loadState === LOAD_STATE.LOADING}
                     />
                 )}
-                <Pagination
+                <PixrPaginate
                     current={this.state.currentPage}
                     total={this.state.totalPhotos}
                     perPage={this.state.perPage}

@@ -137,7 +137,7 @@ export default class PixrSettingsTab extends PluginSettingTab {
             });
 
         new Setting(containerEl)
-            .setName("Default image size")
+            .setName("Image download sizing")
             .setDesc(
                 "Set a default sizing for your image result download sizing dropdown component."
             )

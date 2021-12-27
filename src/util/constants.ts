@@ -27,14 +27,14 @@ export const LOAD_STATE = {
 };
 
 export const DOWNLOAD_MODAL_STYLE = {
-    position: "fixed" as "fixed",
-    top: "50%",
-    transform: "translateY(-50%)",
-    maxWidth: "480px",
-    margin: "0 auto",
     left: "0",
     right: "0",
+    top: "50%",
+    margin: "0 auto",
+    maxWidth: "480px",
     textAlign: "left" as "left",
+    position: "fixed" as "fixed",
+    transform: "translateY(-50%)",
 };
 
 export const DOWNLOAD_SPANS_STYLE = {

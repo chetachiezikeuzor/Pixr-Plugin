@@ -1,6 +1,6 @@
 import React from "react";
 
-const NotFound = ({ data }: any) => {
+const PixrNotFound = ({ data }: any) => {
     let randomImage = data.map((photo: any) => (
         <img
             key={photo.id}
@@ -23,4 +23,4 @@ const NotFound = ({ data }: any) => {
     );
 };
 
-export default NotFound;
+export default PixrNotFound;

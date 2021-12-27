@@ -1,8 +1,8 @@
 import { usePlugin } from "../util/hooks";
-import ResultItem from "./resultItem";
+import PixrResultItem from "./pixrResultItem";
 import React, { useEffect, useRef } from "react";
 
-const ResultList = ({ data, update }: any) => {
+const PixrResultList = ({ data, update }: any) => {
     const ref = useRef();
     const plugin = usePlugin();
     const updater = () => {
@@ -11,7 +11,7 @@ const ResultList = ({ data, update }: any) => {
     };
     useEffect(() => updater);
     let items = data.map((photo: any) => (
-        <ResultItem key={photo.id} photo={photo} plugin={plugin} />
+        <PixrResultItem key={photo.id} photo={photo} plugin={plugin} />
     ));
     return (
         <ul ref={ref} className="search-results">
@@ -20,4 +20,4 @@ const ResultList = ({ data, update }: any) => {
     );
 };
 
-export default ResultList;
+export default PixrResultList;
