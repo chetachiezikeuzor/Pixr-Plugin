@@ -4,7 +4,7 @@ import { PixrView } from "../view/pixrView";
 import PixrSettingsTab from "../settings/settingsTab";
 import { PixrSettings, DEFAULT_SETTINGS } from "src/settings/settingsData";
 import { PIXR_VIEW_ } from "src/util/constants";
-import { dragNDropImage, triggerDownLoad } from "../util/utils";
+import { dragNDropImage, triggerDownload } from "../util/utils";
 import { EditorView } from "@codemirror/view";
 
 export default class PixrPlugin extends Plugin {
@@ -91,7 +91,7 @@ export default class PixrPlugin extends Plugin {
                                     },
                                 ],
                             });
-                            triggerDownLoad(idText[1]);
+                            triggerDownload(idText[1]);
                             return true;
                         }
 

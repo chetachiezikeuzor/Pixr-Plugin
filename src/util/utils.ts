@@ -93,7 +93,7 @@ export function downloadImage(
             }
         });
     })();
-    triggerDownLoad(photoId);
+    triggerDownload(photoId);
 }
 
 export async function saveThisAsImage(
@@ -224,7 +224,7 @@ export function currentLocale(): string {
     return window.navigator.language;
 }
 
-export function triggerDownLoad(photoId: string) {
+export function triggerDownload(photoId: string) {
     UNSPLASH.photos.get({ photoId: photoId }).then((result) => {
         if (result.type === "success") {
             const photo = result.response;

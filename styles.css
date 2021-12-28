@@ -3,7 +3,7 @@
     --rgb-pink-pixr: 255, 183, 234;
     --rgb-blue-pixr: 147, 192, 255;
     --rgb-green-pixr: 156, 240, 156;
-    --rgb-orange-pixr: 255, 211, 108;
+    --rgb-red-pixr: 255, 136, 168;
 }
 
 .setting-item.extra > .setting-item-info {
@@ -331,7 +331,7 @@
 
 /**/
 
-.title.feature-single-hero {
+.random-image-text {
     display: block;
     text-align: center;
     margin-block-start: 0.46em;
@@ -344,7 +344,7 @@
     font-weight: 700;
 }
 
-.utility-page-content-image-wrapper {
+.random-image-wrapper {
     display: contents;
     width: 100%;
     flex-direction: column;
@@ -358,7 +358,7 @@
     box-shadow: 0 2px 8px 0 var(--background-modifier-border);
 }
 
-.utility-page-content-image-wrapper img {
+.random-image-wrapper img {
     z-index: 0;
     height: 100%;
     min-width: 100%;

@@ -13,10 +13,8 @@ const PixrNotFound = ({ data }: any) => {
     ));
     return (
         <>
-            <div className="utility-page-content-image-wrapper">
-                {randomImage}
-            </div>
-            <p className="title feature-single-hero">
+            <div className="random-image-wrapper">{randomImage}</div>
+            <p className="random-image-text">
                 We Couldn't Find Anything! Try Again.
             </p>
         </>

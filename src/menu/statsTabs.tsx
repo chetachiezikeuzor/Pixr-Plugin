@@ -42,7 +42,6 @@ export default class MenuTabs extends Component<any, any> {
                     <Tab>DIM</Tab>
                     <Tab>Stats</Tab>
                 </TabList>
-
                 <TabPanel>
                     <StatsIcons
                         likes={this.props.photo.likes}
