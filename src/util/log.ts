@@ -1,3 +1,8 @@
+/* ------------------------------------------------------------------
+ **  —— Credits go to:
+ **  —— SilentVoid13's Templater Plugin: https://github.com/SilentVoid13/Templater
+ ** -----------------------------------------------------------------*/
+
 import { Notice } from "obsidian";
 import { GetError } from "./error";
 

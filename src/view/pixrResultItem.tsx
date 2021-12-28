@@ -83,7 +83,11 @@ const PixrResultItem = ({ photo, plugin }: any) => {
 
     return (
         <>
-            <li key={photo.id} className="result-item" ref={parentElementRef}>
+            <li
+                key={photo.id}
+                className="pixr-result-item"
+                ref={parentElementRef}
+            >
                 {plugin.settings.showDownloadConfirmationModal == true ? (
                     <DownloadConfirmModal
                         isShowing={isShowing}
@@ -100,7 +104,7 @@ const PixrResultItem = ({ photo, plugin }: any) => {
                 ) : null}
 
                 <a
-                    className="externalLinkIcon"
+                    className="pixr-external-link-icon"
                     style={{
                         position: "absolute",
                         top: "3px",
@@ -137,18 +141,18 @@ const PixrResultItem = ({ photo, plugin }: any) => {
                     ref={resultImageRef}
                     src={photo.urls.regular}
                     alt={`"${capitalizeFirstLetter(altDescription)}"`}
-                    className="result-image"
+                    className="pixr-result-image"
                     onClick={(e) => {
                         resultImageRef.current.setAttribute("style", "");
                     }}
                 />
-                <div className="result-options">
-                    <span className="user-info">
+                <div className="pixr-result-options">
+                    <span className="pixr-user-info">
                         <img
                             src={photo.user.profile_image.medium}
                             alt={capitalizeFirstLetter(photo.user.name)}
                         />
-                        <span className="photographer-name">
+                        <span className="pixr-photographer-name">
                             <a
                                 href={`${photo.user.links.html}?utm_source=pixr&utm_medium=referral`}
                             >
@@ -162,7 +166,10 @@ const PixrResultItem = ({ photo, plugin }: any) => {
                             </a>
                         </span>
                     </span>
-                    <span className="action-buttons" ref={actionButtonsRef}>
+                    <span
+                        className="pixr-action-buttons-container"
+                        ref={actionButtonsRef}
+                    >
                         <select
                             ref={dropdownRef}
                             defaultValue={plugin.settings.downloadType}
@@ -188,7 +195,7 @@ const PixrResultItem = ({ photo, plugin }: any) => {
                                 paddingBottom: "2px",
                                 minWidth: "90px",
                             }}
-                            className="dropdown action-button"
+                            className="dropdown pixr-action-button"
                         >
                             {selectLabels.map((value, key) => (
                                 <option
@@ -202,7 +209,7 @@ const PixrResultItem = ({ photo, plugin }: any) => {
                         </select>
 
                         <span
-                            className="action-button"
+                            className="pixr-action-button"
                             onClick={(e) => {
                                 plugin.settings.showDownloadConfirmationModal
                                     ? toggle()
@@ -251,7 +258,7 @@ const PixrResultItem = ({ photo, plugin }: any) => {
                             </svg>
                         </span>
                         <span
-                            className="action-button"
+                            className="pixr-action-button"
                             onClick={(e) =>
                                 resultImageRef.current.setAttribute(
                                     "style",
@@ -283,7 +290,7 @@ const PixrResultItem = ({ photo, plugin }: any) => {
                             </svg>
                         </span>
                         <span
-                            className="action-button"
+                            className="pixr-action-button"
                             onClick={async (e) => {
                                 statsMenu(
                                     plugin.app,

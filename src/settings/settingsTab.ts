@@ -1,6 +1,6 @@
 import { Embed } from "src/util/types";
 import PixrPlugin from "../plugin/main";
-import { currentLocale, setAttributes } from "src/util/utils";
+import { setAttributes } from "src/util/utils";
 import { App, PluginSettingTab, Setting } from "obsidian";
 import { FolderSuggest } from "../suggest/folderSuggester";
 import {
@@ -189,7 +189,7 @@ export default class PixrSettingsTab extends PluginSettingTab {
         );
 
         const pixrDonationDiv = containerEl.createEl("div", {
-            cls: "pixrDonationSection",
+            cls: "pixr-donation-section",
         });
 
         const donateText = createEl("p");
@@ -210,12 +210,6 @@ export default class PixrSettingsTab extends PluginSettingTab {
         this.plugin.saveSettings();
     }
 }
-
-const createLicenseLink = (link: string): HTMLElement => {
-    const a = createEl("a");
-    a.setAttr("href", link);
-    return a;
-};
 
 const createLinkText = (link: string, text: string): HTMLElement => {
     const a = createEl("a");

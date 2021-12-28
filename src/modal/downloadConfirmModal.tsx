@@ -30,7 +30,7 @@ export class DownloadConfirmModal extends Component<any, any> {
     render() {
         let self = this;
         return this.props.isShowing ? (
-            <div className="pixr-plugin-modal">
+            <div className="pixr-download-confirm-modal">
                 <button
                     type="button"
                     className="modal-close-button"
@@ -68,7 +68,7 @@ export class DownloadConfirmModal extends Component<any, any> {
                                                 textAlign: "center",
                                                 width: "100%",
                                                 border: 0,
-                                                color: "rgba(var(--rgb-blue-pixr),1)",
+                                                color: "rgba(var(--pixr-blue-rgb),1)",
                                                 top: "8px",
                                             },
                                             DOWNLOAD_SPANS_STYLE
@@ -85,7 +85,7 @@ export class DownloadConfirmModal extends Component<any, any> {
                                                 textAlign: "center",
                                                 width: "100%",
                                                 border: 0,
-                                                color: "rgba(var(--rgb-red-pixr),1)",
+                                                color: "rgba(var(--pixr-red-rgb),1)",
                                                 top: "8px",
                                             },
                                             DOWNLOAD_SPANS_STYLE
@@ -147,7 +147,6 @@ export class DownloadConfirmModal extends Component<any, any> {
                                         }}
                                     />
                                 </div>
-                                <div className="setting-item-description"></div>
                             </div>
                             <div className="setting-item-control">
                                 <button

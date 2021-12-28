@@ -27,20 +27,16 @@ export default class MenuTabs extends Component<any, any> {
                     this.setState({
                         viewsTotal: result.response.views.total,
                     });
-                    this.setState({
-                        //@ts-ignore
-                        likesTotal: result.response.likes.total,
-                    });
                 }
             });
     }
     render() {
         return (
             <Tabs>
-                <TabList>
-                    <Tab>Info</Tab>
-                    <Tab>DIM</Tab>
-                    <Tab>Stats</Tab>
+                <TabList className="pixr-menu-tab-list react-tabs__tab-list">
+                    <Tab className="pixr-menu-tab react-tabs__tab">Info</Tab>
+                    <Tab className="pixr-menu-tab react-tabs__tab">DIM</Tab>
+                    <Tab className="pixr-menu-tab react-tabs__tab">Stats</Tab>
                 </TabList>
                 <TabPanel>
                     <StatsIcons

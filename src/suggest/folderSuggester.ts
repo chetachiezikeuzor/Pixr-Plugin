@@ -1,3 +1,9 @@
+/* ------------------------------------------------------------------
+ **  —— Credits go to:
+ **  —— Liam's Periodic Notes Plugin: https://github.com/liamcain/obsidian-periodic-notes
+ **  —— SilentVoid13's Templater Plugin: https://github.com/SilentVoid13/Templater
+ ** -----------------------------------------------------------------*/
+
 import { TAbstractFile, TFolder } from "obsidian";
 import { TextInputSuggest } from "./suggest";
 

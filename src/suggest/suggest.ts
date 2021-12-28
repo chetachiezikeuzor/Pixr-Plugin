@@ -1,3 +1,9 @@
+/* ------------------------------------------------------------------
+ **  —— Credits go to:
+ **  —— Liam's Periodic Notes Plugin: https://github.com/liamcain/obsidian-periodic-notes
+ **  —— SilentVoid13's Templater Plugin: https://github.com/SilentVoid13/Templater
+ ** -----------------------------------------------------------------*/
+
 import { App, ISuggestOwner, Scope } from "obsidian";
 import { createPopper, Instance as PopperInstance } from "@popperjs/core";
 import { setAttributes, wrapAround } from "src/util/utils";

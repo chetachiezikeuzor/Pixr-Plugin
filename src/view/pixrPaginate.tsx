@@ -55,11 +55,13 @@ export default class PixrPaginate extends Component<any, any> {
 
     render() {
         return (
-            <div className="pagination">
-                <div className="pagination-left">
+            <div className="pixr-pagination">
+                <div className="pixr-pagination-left">
                     <a
                         href="#"
-                        className={!this.hasPrev() ? "pagination-hidden" : ""}
+                        className={
+                            !this.hasPrev() ? "pixr-pagination-hidden" : ""
+                        }
                         onClick={(e) => this.changePage(this.prevPage())}
                     >
                         <span
@@ -71,11 +73,11 @@ export default class PixrPaginate extends Component<any, any> {
                     </a>
                 </div>
 
-                <div className="pagination-middle">
+                <div className="pixr-pagination-middle">
                     <ul>
                         <li
                             className={
-                                !this.hasFirst() ? "pagination-hidden" : ""
+                                !this.hasFirst() ? "pixr-pagination-hidden" : ""
                             }
                         >
                             <a href="#" onClick={(e) => this.changePage(1)}>
@@ -84,7 +86,7 @@ export default class PixrPaginate extends Component<any, any> {
                         </li>
                         <li
                             className={
-                                !this.hasFirst() ? "pagination-hidden" : ""
+                                !this.hasFirst() ? "pixr-pagination-hidden" : ""
                             }
                         >
                             <span style={{ color: "var(--text-faint)" }}>
@@ -115,7 +117,7 @@ export default class PixrPaginate extends Component<any, any> {
                         })}
                         <li
                             className={
-                                !this.hasLast() ? "pagination-hidden" : ""
+                                !this.hasLast() ? "pixr-pagination-hidden" : ""
                             }
                         >
                             {" "}
@@ -125,7 +127,7 @@ export default class PixrPaginate extends Component<any, any> {
                         </li>
                         <li
                             className={
-                                !this.hasLast() ? "pagination-hidden" : ""
+                                !this.hasLast() ? "pixr-pagination-hidden" : ""
                             }
                         >
                             <a
@@ -140,10 +142,12 @@ export default class PixrPaginate extends Component<any, any> {
                     </ul>
                 </div>
 
-                <div className="pagination-right">
+                <div className="pixr-pagination-right">
                     <a
                         href="#"
-                        className={!this.hasNext() ? "pagination-hidden" : ""}
+                        className={
+                            !this.hasNext() ? "pixr-pagination-hidden" : ""
+                        }
                         onClick={(e) => {
                             wait(50000);
                             this.changePage(this.nextPage());

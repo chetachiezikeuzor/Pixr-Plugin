@@ -22,8 +22,9 @@ export const DROPDOWN_OPTIONS: SelectOption = {
 export const LOAD_STATE = {
     SUCCESS: "SUCCESS",
     ERROR: "ERROR",
+    SCROLLING: "SCROLLING",
     LOADING: "LOADING",
-    SUBMITTED: "SUBMITTED",
+    NO_RESULTS: "NO_RESULTS",
 };
 
 export const DOWNLOAD_MODAL_STYLE = {

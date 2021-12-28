@@ -9,13 +9,13 @@ const StatsIcons = ({ likes, downloads, views, size }: any) => {
                 style={Object.assign(
                     {
                         border: 0,
-                        color: "rgba(var(--rgb-purple-pixr),1)",
+                        color: "rgba(var(--pixr-purple-rgb),1)",
                         borderBottom:
                             "1px solid var(--background-modifier-border)",
                     },
                     STATS_ICONS_STYLE
                 )}
-                className="action-button"
+                className="pixr-action-button"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -40,13 +40,13 @@ const StatsIcons = ({ likes, downloads, views, size }: any) => {
                 style={Object.assign(
                     {
                         border: 0,
-                        color: "rgba(var(--rgb-blue-pixr),1)",
+                        color: "rgba(var(--pixr-blue-rgb),1)",
                         borderBottom:
                             "1px solid var(--background-modifier-border)",
                     },
                     STATS_ICONS_STYLE
                 )}
-                className="action-button"
+                className="pixr-action-button"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -71,13 +71,13 @@ const StatsIcons = ({ likes, downloads, views, size }: any) => {
                 style={Object.assign(
                     {
                         border: 0,
-                        color: "rgba(var(--rgb-green-pixr),1)",
+                        color: "rgba(var(--pixr-green-rgb),1)",
                         borderBottom:
                             "1px solid var(--background-modifier-border)",
                     },
                     STATS_ICONS_STYLE
                 )}
-                className="action-button"
+                className="pixr-action-button"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -106,11 +106,11 @@ const StatsIcons = ({ likes, downloads, views, size }: any) => {
                 style={Object.assign(
                     {
                         border: 0,
-                        color: "rgba(var(--rgb-pink-pixr),1)",
+                        color: "rgba(var(--pixr-pink-rgb),1)",
                     },
                     STATS_ICONS_STYLE
                 )}
-                className="action-button"
+                className="pixr-action-button"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
