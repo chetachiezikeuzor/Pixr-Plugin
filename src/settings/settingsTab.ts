@@ -178,11 +178,14 @@ export default class PixrSettingsTab extends PluginSettingTab {
         let unsplashLicenseSetting = new Setting(containerEl)
             .setName("Questions?")
             .setDesc(
-                "This plugin uses Unsplash image database, the largest open collection of high-quality photos. If you'd like to learn more about image use, please use the button to visit Unplash's Licensing."
+                "This plugin uses Unsplash's database, the largest open collection of high-quality photos. If you'd like to learn more about image use, use the button to visit Unsplash's Licensing."
             )
             .setClass("extra");
         unsplashLicenseSetting.controlEl.appendChild(
-            createLinkText("https://unsplash.com/license", "Unsplash License")
+            createLinkText(
+                "https://help.unsplash.com/en/collections/1463188-unsplash-license",
+                "Unsplash License"
+            )
         );
 
         const pixrDonationDiv = containerEl.createEl("div", {

@@ -85,7 +85,7 @@ export class DownloadConfirmModal extends Component<any, any> {
                                                 textAlign: "center",
                                                 width: "100%",
                                                 border: 0,
-                                                color: "rgba(var(--color-size-pixr),1)",
+                                                color: "rgba(var(--color-likes-pixr),1)",
                                                 top: "8px",
                                             },
                                             DOWNLOAD_SPANS_STYLE
@@ -157,7 +157,8 @@ export class DownloadConfirmModal extends Component<any, any> {
                                             e,
                                             this.props.chosenImgUrl,
                                             this.state.imgTitle,
-                                            this.props.plugin
+                                            this.props.plugin,
+                                            this.props.plugin.id
                                         );
                                         setTimeout(function (e) {
                                             self.props.hide(e);

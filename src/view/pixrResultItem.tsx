@@ -133,6 +133,7 @@ const PixrResultItem = ({ photo, plugin }: any) => {
                 </a>
 
                 <img
+                    id={photo.id}
                     ref={resultImageRef}
                     src={photo.urls.regular}
                     alt={`"${capitalizeFirstLetter(altDescription)}"`}
@@ -216,7 +217,8 @@ const PixrResultItem = ({ photo, plugin }: any) => {
                                               ]
                                           ],
                                           capitalizeFirstLetter(altDescription),
-                                          plugin
+                                          plugin,
+                                          photo.id
                                       );
                             }}
                         >

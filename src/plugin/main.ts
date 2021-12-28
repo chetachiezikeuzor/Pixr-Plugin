@@ -4,7 +4,7 @@ import { PixrView } from "../view/pixrView";
 import PixrSettingsTab from "../settings/settingsTab";
 import { PixrSettings, DEFAULT_SETTINGS } from "src/settings/settingsData";
 import { PIXR_VIEW_ } from "src/util/constants";
-import { dragNDropImage } from "../util/utils";
+import { dragNDropImage, triggerDownLoad } from "../util/utils";
 import { EditorView } from "@codemirror/view";
 
 export default class PixrPlugin extends Plugin {
@@ -71,6 +71,7 @@ export default class PixrPlugin extends Plugin {
                         const html = data.getData("text/html");
                         const altText = html.match(/alt\s*=\s*"(.+?)"/);
                         const srcText = html.match(/src\s*=\s*"(.+?)"/);
+                        const idText = html.match(/id\s*=\s*"(.+?)"/);
                         const mainSelection = editorView.state.selection?.main;
 
                         if (
@@ -90,6 +91,7 @@ export default class PixrPlugin extends Plugin {
                                     },
                                 ],
                             });
+                            triggerDownLoad(idText[1]);
                             return true;
                         }
 

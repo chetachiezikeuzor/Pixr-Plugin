@@ -122,7 +122,8 @@ export default class PixrApp extends Component<any, any> {
                         className="search-input input"
                         placeholder="Search free high-resolution photos"
                         style={{
-                            marginBottom: 20,
+                            marginBottom: 12,
+                            marginTop: -8,
                             width: "100%",
                             height: "2.86em",
                         }}
@@ -142,6 +143,7 @@ export default class PixrApp extends Component<any, any> {
                     />
                 )}
                 <PixrPaginate
+                    pageRange={2}
                     current={this.state.currentPage}
                     total={this.state.totalPhotos}
                     perPage={this.state.perPage}

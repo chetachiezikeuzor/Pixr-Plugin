@@ -14,7 +14,7 @@ const PixrResultList = ({ data, update }: any) => {
         <PixrResultItem key={photo.id} photo={photo} plugin={plugin} />
     ));
     return (
-        <ul ref={ref} className="search-results">
+        <ul ref={ref} className="search-results" style={{ resize: "vertical" }}>
             {items}
         </ul>
     );

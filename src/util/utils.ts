@@ -10,7 +10,7 @@ import {
 import moment from "moment";
 import { GetError } from "./error";
 import PixrPlugin from "src/plugin/main";
-import { SI_SYMBOLS, BYTE_SIZES } from "./constants";
+import { SI_SYMBOLS, BYTE_SIZES, UNSPLASH } from "./constants";
 import { PixrSettings } from "src/settings/settingsData";
 
 export function setAttributes(element: any, attributes: any) {
@@ -72,14 +72,28 @@ export function downloadImage(
     e: any,
     imageURL: string,
     imageDesc: string,
-    plugin: PixrPlugin
+    plugin: PixrPlugin,
+    photoId: string
 ) {
     (async function () {
-        let blob = await fetch(`${imageURL}`).then((r) => r.blob());
-        let fileExtension = blob.type.split("/").pop();
+        await fetch(imageURL).then(async (r) => {
+            if (r.status == 200) {
+                let blob = await r.blob();
+                let fileExtension = blob.type.split("/").pop();
 
-        await saveThisAsImage(blob, imageURL, imageDesc, fileExtension, plugin);
+                await saveThisAsImage(
+                    blob,
+                    imageURL,
+                    imageDesc,
+                    fileExtension,
+                    plugin
+                );
+            } else {
+                new Notice("Something went wrong!");
+            }
+        });
     })();
+    triggerDownLoad(photoId);
 }
 
 export async function saveThisAsImage(
@@ -180,9 +194,9 @@ export function dragNDropImage(
 ) {
     const imageAlt = altText[1].replaceAll("&quot;", "");
     if (settings.embedType === "html")
-        return `<img src="${
-            srcText[1]
-        }" width="100%" alt="${capitalizeFirstLetter(imageAlt)}"/>`;
+        return `<img src="${srcText[1]}" alt="${capitalizeFirstLetter(
+            imageAlt
+        )}"/>`;
     else if (settings.embedType === "markdown")
         return `![${capitalizeFirstLetter(imageAlt)}](${srcText[1]})`;
 }
@@ -196,14 +210,27 @@ export function copyText(
     filePath: string
 ) {
     if (settings.embedType === "html")
-        return `<img src="app:///local${vault}/${filePath}" width="100%"/>`;
+        return `<img src="app:///local${vault}/${filePath}" alt="${capitalizeFirstLetter(
+            imageDesc
+        )}"/>`;
     else if (settings.embedType === "markdown")
         return `![[${
-            imageDesc ? imageDesc : "image"
+            imageDesc ? imageDesc : "Unsplash Image"
         } ${now}.${fileExtension}]]`;
 }
 
 export function currentLocale(): string {
     if (typeof window === "undefined") return "en-US";
     return window.navigator.language;
+}
+
+export function triggerDownLoad(photoId: string) {
+    UNSPLASH.photos.get({ photoId: photoId }).then((result) => {
+        if (result.type === "success") {
+            const photo = result.response;
+            UNSPLASH.photos.trackDownload({
+                downloadLocation: photo.links.download_location,
+            });
+        }
+    });
 }
