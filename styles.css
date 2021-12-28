@@ -1,8 +1,9 @@
 :root {
-    --color-size-pixr: 204, 169, 255;
-    --color-likes-pixr: 255, 183, 234;
-    --color-views-pixr: 147, 192, 255;
-    --color-downloads-pixr: 156, 240, 156;
+    --rgb-purple-pixr: 204, 169, 255;
+    --rgb-pink-pixr: 255, 183, 234;
+    --rgb-blue-pixr: 147, 192, 255;
+    --rgb-green-pixr: 156, 240, 156;
+    --rgb-orange-pixr: 255, 211, 108;
 }
 
 .setting-item.extra > .setting-item-info {

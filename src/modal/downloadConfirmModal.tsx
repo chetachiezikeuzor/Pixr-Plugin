@@ -68,7 +68,7 @@ export class DownloadConfirmModal extends Component<any, any> {
                                                 textAlign: "center",
                                                 width: "100%",
                                                 border: 0,
-                                                color: "rgba(var(--color-views-pixr),1)",
+                                                color: "rgba(var(--rgb-blue-pixr),1)",
                                                 top: "8px",
                                             },
                                             DOWNLOAD_SPANS_STYLE
@@ -85,7 +85,7 @@ export class DownloadConfirmModal extends Component<any, any> {
                                                 textAlign: "center",
                                                 width: "100%",
                                                 border: 0,
-                                                color: "rgba(var(--color-likes-pixr),1)",
+                                                color: "rgba(var(--rgb-orange-pixr),1)",
                                                 top: "8px",
                                             },
                                             DOWNLOAD_SPANS_STYLE

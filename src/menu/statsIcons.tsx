@@ -9,7 +9,7 @@ const StatsIcons = ({ likes, downloads, views, size }: any) => {
                 style={Object.assign(
                     {
                         border: 0,
-                        color: "rgba(var(--color-size-pixr),1)",
+                        color: "rgba(var(--rgb-purple-pixr),1)",
                         borderBottom:
                             "1px solid var(--background-modifier-border)",
                     },
@@ -40,7 +40,7 @@ const StatsIcons = ({ likes, downloads, views, size }: any) => {
                 style={Object.assign(
                     {
                         border: 0,
-                        color: "rgba(var(--color-views-pixr),1)",
+                        color: "rgba(var(--rgb-blue-pixr),1)",
                         borderBottom:
                             "1px solid var(--background-modifier-border)",
                     },
@@ -71,7 +71,7 @@ const StatsIcons = ({ likes, downloads, views, size }: any) => {
                 style={Object.assign(
                     {
                         border: 0,
-                        color: "rgba(var(--color-downloads-pixr),1)",
+                        color: "rgba(var(--rgb-green-pixr),1)",
                         borderBottom:
                             "1px solid var(--background-modifier-border)",
                     },
@@ -106,7 +106,7 @@ const StatsIcons = ({ likes, downloads, views, size }: any) => {
                 style={Object.assign(
                     {
                         border: 0,
-                        color: "rgba(var(--color-likes-pixr),1)",
+                        color: "rgba(var(--rgb-pink-pixr),1)",
                     },
                     STATS_ICONS_STYLE
                 )}
