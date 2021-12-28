@@ -147,7 +147,7 @@ const PixrAppError = ({ data, status }: any) => {
                                 </p>
                             )}
                         </div>
-                        <footer className="pixr-error-justify-sb">
+                        <div className="pixr-error-justify-sb">
                             <div style={{ textTransform: "uppercase" }}>
                                 <a
                                     href="https://github.com/chetachiezikeuzor/Pixr-Plugin"
@@ -157,7 +157,7 @@ const PixrAppError = ({ data, status }: any) => {
                                 </a>
                             </div>
                             <div>{status.replaceAll("_", " ")}</div>
-                        </footer>
+                        </div>
                     </div>
                 </div>
             </div>
