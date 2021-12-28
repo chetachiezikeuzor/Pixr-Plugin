@@ -132,7 +132,8 @@ const PixrAppError = ({ data, status }: any) => {
                             </h1>
                             {status == "NO_RESULTS" ? (
                                 <p className="pixr-error-paragraph-style pixr-error-paragraph">
-                                    Unfortunately your query yielded no results.
+                                    Unfortunately, your query yielded no
+                                    results.
                                     <br />
                                     Try broadening your search.
                                 </p>
