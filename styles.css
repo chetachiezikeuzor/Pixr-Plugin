@@ -126,153 +126,6 @@ PIXR ANIMATIONS
 }
 
 /* ----------------------------
-PIXR ERROR PAGE
-** ----------------------------*/
-
-.pixr-error-wrapper-container {
-    height: 90%;
-}
-.pixr-error-position-relative {
-    position: relative;
-}
-.pixr-error-opacity-change,
-.pixr-error-wrapper {
-    height: 100%;
-}
-.pixr-error-opacity-change.pixr-error-opacity-100 {
-    opacity: 1;
-}
-.pixr-error-opacity-change {
-    opacity: 0;
-    transition: opacity 0.2s ease-in;
-}
-.pixr-error-position-absolute-wrapper {
-    height: 100%;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-}
-.pixr-error-wrapper {
-    position: relative;
-}
-.pixr-error-full-width-padding-20,
-.pixr-error-justify-sb {
-    color: var(--text-muted);
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-}
-.pixr-error-full-width-padding-20 {
-    padding: 20px;
-    width: 100%;
-}
-.pixr-error-unsplash-check {
-    align-items: center;
-    display: flex;
-}
-.pixr-error-red-dot {
-    animation: pixr-error-animation-box-shadow 2s infinite;
-    background-color: #e25c3d;
-    border-radius: 50%;
-    height: 8px;
-    margin-right: 8px;
-    width: 8px;
-}
-.pixr-error-unsplash-check-link {
-    font-size: 14px;
-    opacity: 0.8;
-}
-.pixr-error-wrapper-inner {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    padding-left: 16px;
-    padding-right: 16px;
-}
-.pixr-error-h1 {
-    color: var(--text-muted);
-    line-height: 1.1;
-    text-align: center;
-    font-size: 84px;
-    font-weight: 700 !important;
-}
-.pixr-error-margin-0 {
-    margin-bottom: 0;
-    margin-top: 0;
-}
-.pixr-error-text-wrap {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-}
-.pixr-error-z-index-2 {
-    z-index: 2;
-}
-.pixr-error-text-shadow {
-    text-shadow: 0 0 1.2em;
-}
-.theme-dark .pixr-error-text-shadow {
-    text-shadow: 0 0 0em;
-}
-.pixr-error-text-shadow.pixr-error-animation-blur {
-    animation: pixr-error-animation-blur 6s linear infinite both;
-}
-.pixr-error-text-shadow.pixr-error-animation-blur-opacity-min {
-    animation: pixr-error-animation-blur 10s linear infinite both,
-        pixr-error-animation-opacity-min 5ms ease-in-out 4s infinite alternate
-            both;
-}
-.pixr-error-text-shadow.pixr-error-opacity-45 {
-    opacity: 0.45;
-}
-.pixr-error-text-shadow.pixr-error-animation-opacity {
-    animation: pixr-error-animation-blur 10s linear infinite both,
-        pixr-error-animation-opacity 1.3s linear 1s infinite;
-}
-.pixr-error-animation-transform {
-    line-height: 0.75;
-    transform-origin: top left;
-    z-index: 1;
-}
-.pixr-error-text-shadow.pixr-error-animation-blur-opacity-min {
-    animation: pixr-error-animation-blur 10s linear infinite both,
-        pixr-error-animation-opacity-min 5ms ease-in-out 2s infinite alternate
-            both;
-}
-.pixr-error-paragraph-style {
-    color: var(--text-muted);
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 24px;
-    margin-top: 16px;
-    text-align: center;
-}
-.pixr-error-justify-sb {
-    align-items: center;
-    bottom: -8px;
-    font-size: 12px;
-    left: 20px;
-    right: 20px;
-}
-
-/*PIXR SETTINGS*/
-
-.setting-item.extra > .setting-item-info {
-    opacity: 0.65;
-}
-.pixr-donation-section {
-    width: 65%;
-    height: 50vh;
-    margin: 0 auto;
-    text-align: center;
-    color: var(--text-normal);
-}
-
-/* ----------------------------
 PIXR VIEW
 ** ----------------------------*/
 
@@ -283,8 +136,6 @@ PIXR VIEW
     height: calc(100% - 50px);
 }
 .pixr-search-input {
-    width: 100%;
-    height: 2.4em;
     padding: 5px;
     font-size: 1em;
     padding-left: 0.75em;
@@ -431,7 +282,10 @@ PIXR VIEW
     letter-spacing: 0.7px;
 }
 
-/*PIXR PAGINATION*/
+/* ----------------------------
+PIXR PAGINATION
+** ----------------------------*/
+
 .pixr-pagination-hidden {
     display: none !important;
 }
@@ -523,6 +377,155 @@ PIXR VIEW
     border-top-color: var(--interactive-accent);
     border-radius: 50%;
     animation: pixr-spinner-animation 1s linear infinite;
+}
+
+/* ----------------------------
+PIXR ERROR PAGE
+** ----------------------------*/
+
+.pixr-error-wrapper-container {
+    height: 90%;
+}
+.pixr-error-position-relative {
+    position: relative;
+}
+.pixr-error-opacity-change,
+.pixr-error-wrapper {
+    height: 100%;
+}
+.pixr-error-opacity-change.pixr-error-opacity-100 {
+    opacity: 1;
+}
+.pixr-error-opacity-change {
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+.pixr-error-position-absolute-wrapper {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+.pixr-error-wrapper {
+    position: relative;
+}
+.pixr-error-full-width-padding-20,
+.pixr-error-justify-sb {
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+}
+.pixr-error-full-width-padding-20 {
+    padding: 20px;
+    width: 100%;
+}
+.pixr-error-unsplash-check {
+    align-items: center;
+    display: flex;
+}
+.pixr-error-red-dot {
+    animation: pixr-error-animation-box-shadow 2s infinite;
+    background-color: #e25c3d;
+    border-radius: 50%;
+    height: 8px;
+    margin-right: 8px;
+    width: 8px;
+}
+.pixr-error-unsplash-check-link {
+    font-size: 14px;
+    opacity: 0.8;
+}
+.pixr-error-wrapper-inner {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.pixr-error-h1 {
+    color: var(--text-muted);
+    line-height: 1.1;
+    text-align: center;
+    font-size: 84px;
+    font-weight: 700 !important;
+}
+.pixr-error-margin-0 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.pixr-error-text-wrap {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+}
+.pixr-error-z-index-2 {
+    z-index: 2;
+}
+.pixr-error-text-shadow {
+    text-shadow: 0 0 1.2em;
+}
+.theme-dark .pixr-error-text-shadow {
+    text-shadow: 0 0 0em;
+}
+.pixr-error-text-shadow.pixr-error-animation-blur {
+    animation: pixr-error-animation-blur 6s linear infinite both;
+}
+.pixr-error-text-shadow.pixr-error-animation-blur-opacity-min {
+    animation: pixr-error-animation-blur 10s linear infinite both,
+        pixr-error-animation-opacity-min 5ms ease-in-out 4s infinite alternate
+            both;
+}
+.pixr-error-text-shadow.pixr-error-opacity-45 {
+    opacity: 0.45;
+}
+.pixr-error-text-shadow.pixr-error-animation-opacity {
+    animation: pixr-error-animation-blur 10s linear infinite both,
+        pixr-error-animation-opacity 1.3s linear 1s infinite;
+}
+.pixr-error-animation-transform {
+    line-height: 0.75;
+    transform-origin: top left;
+    z-index: 1;
+}
+.pixr-error-text-shadow.pixr-error-animation-blur-opacity-min {
+    animation: pixr-error-animation-blur 10s linear infinite both,
+        pixr-error-animation-opacity-min 5ms ease-in-out 2s infinite alternate
+            both;
+}
+.pixr-error-paragraph-style {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    margin-top: 16px;
+    text-align: center;
+}
+.pixr-error-justify-sb {
+    align-items: center;
+    bottom: -8px;
+    font-size: 12px;
+    left: 20px;
+    right: 20px;
+}
+
+/* ----------------------------
+PIXR SETTINGS
+** ----------------------------*/
+
+.setting-item.extra > .setting-item-info {
+    opacity: 0.65;
+}
+.pixr-donation-section {
+    width: 65%;
+    height: 50vh;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--text-normal);
 }
 
 /* ----------------------------
