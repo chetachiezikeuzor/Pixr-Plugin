@@ -46,7 +46,7 @@ export class PixrView extends ItemView {
     draw(): void {
         ReactDOM.render(
             <PluginContext.Provider value={this.plugin}>
-                <PixrApp />
+                <PixrApp plugin={this.plugin} />
             </PluginContext.Provider>,
             this.containerEl.children[1]
         );

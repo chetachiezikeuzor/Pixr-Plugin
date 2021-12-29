@@ -149,10 +149,7 @@ const PixrAppError = ({ data, status }: any) => {
                         </div>
                         <div className="pixr-error-justify-sb">
                             <div style={{ textTransform: "uppercase" }}>
-                                <a
-                                    href="https://github.com/chetachiezikeuzor/Pixr-Plugin"
-                                    className="eziW_"
-                                >
+                                <a href="https://github.com/chetachiezikeuzor/Pixr-Plugin">
                                     {parse(icons["pixr-icon"])} Pixr Plugin Repo
                                 </a>
                             </div>

@@ -1,4 +1,5 @@
 import PixrAppError from "./pixrAppError";
+import PixrNoKey from "./pixrNoKey";
 import PixrResultList from "./pixrResultList";
 import PixrPaginate from "./pixrPaginate";
 import React, { Component } from "react";
@@ -124,24 +125,33 @@ export default class PixrApp extends Component<any, any> {
                     />
                 </form>
 
-                {this.state.loadState === LOAD_STATE.LOADING ? (
-                    <div className="pixr-pagination-loader" />
-                ) : this.state.loadState === LOAD_STATE.ERROR ||
-                  this.state.loadState === LOAD_STATE.NO_RESULTS ? (
-                    <PixrAppError status={this.state.loadState} />
+                {!this.props.plugin.settings.customApiKey ? (
+                    <PixrNoKey />
                 ) : (
-                    <PixrResultList
-                        data={this.state.photos}
-                        update={this.state.loadState === LOAD_STATE.SCROLLING}
-                    />
+                    <>
+                        {this.state.loadState === LOAD_STATE.LOADING ? (
+                            <div className="pixr-pagination-loader" />
+                        ) : this.state.loadState === LOAD_STATE.ERROR ||
+                          this.state.loadState === LOAD_STATE.NO_RESULTS ? (
+                            <PixrAppError status={this.state.loadState} />
+                        ) : (
+                            <PixrResultList
+                                data={this.state.photos}
+                                update={
+                                    this.state.loadState ===
+                                    LOAD_STATE.SCROLLING
+                                }
+                            />
+                        )}
+                        <PixrPaginate
+                            pageRange={2}
+                            current={this.state.currentPage}
+                            total={this.state.totalPhotos}
+                            perPage={this.state.perPage}
+                            onPageChanged={this.fetchPhotos.bind(this)}
+                        />
+                    </>
                 )}
-                <PixrPaginate
-                    pageRange={2}
-                    current={this.state.currentPage}
-                    total={this.state.totalPhotos}
-                    perPage={this.state.perPage}
-                    onPageChanged={this.fetchPhotos.bind(this)}
-                />
             </>
         );
     }

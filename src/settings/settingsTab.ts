@@ -37,7 +37,7 @@ export default class PixrSettingsTab extends PluginSettingTab {
             .addText((text: any) =>
                 text
                     .setPlaceholder("custom api key")
-                    .setValue("")
+                    .setValue(this.plugin.settings.customApiKey)
                     .onChange(async (value: any) => {
                         this.plugin.settings.customApiKey = value;
                         await this.plugin.saveSettings();
