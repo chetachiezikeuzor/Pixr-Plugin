@@ -47,7 +47,7 @@ const PixrNoKey = () => {
                                         <span className="pixr-error-text-shadow pixr-error-animation-blur pixr-error-z-index-2">
                                             k
                                         </span>
-                                        <span className="pixr-error-text-shadow pixr-error-animation-blur pixr-error-z-index-2">
+                                        <span className="pixr-error-text-shadow pixr-error-animation-blur pixr-error-animation-blur-opacity-min pixr-error-z-index-2">
                                             e
                                         </span>
                                         <span className="pixr-error-text-shadow pixr-error-animation-blur pixr-error-z-index-2">
@@ -61,7 +61,7 @@ const PixrNoKey = () => {
                                 <br />
                                 searching for images.
                             </p>
-                            <a>
+                            <a href="https://github.com/chetachiezikeuzor/Pixr-Plugin">
                                 <button
                                     style={{
                                         backgroundColor:
